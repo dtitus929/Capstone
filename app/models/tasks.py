@@ -8,7 +8,7 @@ class Task(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text)
     due_date = db.Column(db.String(50))
     priority = db.Column(db.Integer, default=3)

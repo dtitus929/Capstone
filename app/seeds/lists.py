@@ -4,12 +4,12 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_lists():
-    list1 = List(name='inbox', user_id=1)
-    list2 = List(name='home', user_id=1)
-    list3 = List(name='work', user_id=1)
-    list4 = List(name='inbox', user_id=2)
-    list5 = List(name="Franks' Party", user_id=2)
-    list6 = List(name='inbox', user_id=3)
+    list1 = List(name='inbox', is_default=True, user_id=1)
+    list2 = List(name='home', is_default=False,  user_id=1)
+    list3 = List(name='work', is_default=False,  user_id=1)
+    list4 = List(name='inbox', is_default=True, user_id=2)
+    list5 = List(name="Franks' Party", is_default=False,  user_id=2)
+    list6 = List(name='inbox', is_default=True, user_id=3)
 
     db.session.add(list1)
     db.session.add(list2)

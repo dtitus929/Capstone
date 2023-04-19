@@ -9,6 +9,7 @@ class List(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
+    is_default = db.Column(db.Boolean, nullable=False, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
 
     # Relationships
@@ -19,5 +20,6 @@ class List(db.Model):
         return {
             'id': self.id,
             'name': self.name,
+            'is_default': self.is_default,
             'user_id': self.user_id
         }

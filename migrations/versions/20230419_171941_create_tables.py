@@ -1,8 +1,8 @@
 """create tables
 
-Revision ID: a0e390653a08
+Revision ID: 54e782a36a50
 Revises: 
-Create Date: 2023-04-19 14:41:18.290114
+Create Date: 2023-04-19 17:19:41.626403
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a0e390653a08'
+revision = '54e782a36a50'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -32,15 +32,16 @@ def upgrade():
     op.create_table('lists',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(), nullable=False),
+    sa.Column('is_default', sa.Boolean(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('tasks',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=50), nullable=False),
+    sa.Column('name', sa.String(length=255), nullable=False),
     sa.Column('description', sa.Text(), nullable=True),
-    sa.Column('due_date', sa.Date(), nullable=True),
+    sa.Column('due_date', sa.String(length=50), nullable=True),
     sa.Column('priority', sa.Integer(), nullable=True),
     sa.Column('completed', sa.Boolean(), nullable=False),
     sa.Column('list_id', sa.Integer(), nullable=True),

@@ -16,6 +16,9 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
 
+    # Relationships
+    lists = db.relationship("List", back_populates="user")
+
     @property
     def password(self):
         return self.hashed_password

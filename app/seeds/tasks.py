@@ -10,7 +10,8 @@ def seed_tasks():
         due_date='2023-04-20',
         priority=1,
         completed=False,
-        list_id=1
+        list_id=1,
+        user_id=1
     )
     u1l1t2 = Task(
         name='This is task 2 in list 1 for user 1',
@@ -18,7 +19,8 @@ def seed_tasks():
         due_date='2023-05-20',
         priority=2,
         completed=False,
-        list_id=1
+        list_id=1,
+        user_id=1
     )
     u1l1t3 = Task(
         name='This is task 3 in list 1 for user 1',
@@ -26,7 +28,8 @@ def seed_tasks():
         due_date='',
         priority=3,
         completed=True,
-        list_id=1
+        list_id=1,
+        user_id=1
     )
     u1l2t1 = Task(
         name='This is task 1 in list 2 for user 1',
@@ -34,7 +37,8 @@ def seed_tasks():
         due_date='2023-04-22',
         priority=3,
         completed=False,
-        list_id=2
+        list_id=2,
+        user_id=1
     )
     u1l2t2 = Task(
         name='This is task 2 in list 2 for user 1',
@@ -42,7 +46,8 @@ def seed_tasks():
         due_date='2023-04-23',
         priority=3,
         completed=True,
-        list_id=2
+        list_id=2,
+        user_id=1
     )
     u1l3t1 = Task(
         name='This is task 1 in list 3 for user 1',
@@ -50,7 +55,8 @@ def seed_tasks():
         due_date='2023-04-27',
         priority=3,
         completed=False,
-        list_id=3
+        list_id=3,
+        user_id=1
     )
     u2l1t1 = Task(
         name='This is task 1 in list 1 for user 2',
@@ -58,25 +64,28 @@ def seed_tasks():
         due_date='',
         priority=3,
         completed=False,
-        list_id=4
+        list_id=4,
+        user_id=2
     )
 
     u2l2t1 = Task(
         name='This is task 1 in list 2 for user 2',
         description="Description for task 1, list 2, user 2",
         due_date='2023-04-27',
-        priority=3,
+        priority=1,
         completed=False,
-        list_id=5
+        list_id=5,
+        user_id=2
     )
 
     u3l1t1 = Task(
         name='This is task 1 in list 1 for user 3',
-        description="Description for task 1, list 2, user 2",
+        description="Description for task 1, list 1, user 3",
         due_date='2023-05-01',
         priority=2,
         completed=False,
-        list_id=6
+        list_id=6,
+        user_id=3
     )
 
     db.session.add(u1l1t1)

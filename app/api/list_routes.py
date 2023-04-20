@@ -44,7 +44,7 @@ def post_new_list():
     if form.validate_on_submit():
         list = List(
             name=form.data['name'],
-            is_default=False,
+            type="standard",
             user_id=current_user.id
         )
         db.session.add(list)
@@ -146,6 +146,7 @@ def add_task_by_list_id(id):
             priority=form.data['priority'],
             completed=False,
             list_id=id,
+            user_id=current_user.id,
             created_at=db.func.now(),
             updated_at=db.func.now()
         )

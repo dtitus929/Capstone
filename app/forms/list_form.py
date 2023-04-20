@@ -6,4 +6,4 @@ from wtforms.validators import DataRequired, Length
 class ListForm(FlaskForm):
 
     name = StringField('List Name', validators=[DataRequired(), Length(
-        max=20, message="Must be between 1 to 20 characters.")])
+        max=30, message="Must be between 1 to 30 characters.")])

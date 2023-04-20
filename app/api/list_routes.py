@@ -1,9 +1,9 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
 
-from app.models import db, List
+from app.models import db, List, Task
 
-from app.forms import ListForm
+from app.forms import ListForm, TaskForm
 
 
 list_routes = Blueprint('lists', __name__)
@@ -59,7 +59,6 @@ def list_edit(id):
     """
     Query for a list by id, edit that list name, and return that list in a dictionary
     """
-
     list = List.query.get(id)
 
     if not list:
@@ -84,7 +83,6 @@ def list_delete(id):
     """
     Query for a list by id, delete that list, and return success message
     """
-
     list = List.query.get(id)
 
     if not list:
@@ -96,3 +94,62 @@ def list_delete(id):
     db.session.delete(list)
     db.session.commit()
     return {"message": "List successfully deleted"}, 200
+
+
+# ##########  Task Routes ##################
+
+
+@list_routes.route('/<int:id>/tasks', methods=['GET'])
+@login_required
+def get_tasks_by_list_id(id):
+    """
+    Query for all tasks by list id and return that list in a dictionary
+    """
+    list = List.query.get(id)
+
+    if not list:
+        return {'message': 'List couldn\'t be found', "statusCode": 404}, 404
+
+    if current_user.id != list.user_id:
+        return {'message': 'Forbidden', "statusCode": 403}, 403
+
+    try:
+        tasks = Task.query.filter(Task.list_id == id).all()
+        if not tasks:
+            return {'message': 'No Tasks could be found', "statusCode": 404}, 404
+        return {'tasks': [task.to_dict_task() for task in tasks]}
+    except:
+        return {"message": "Failed to get tasks"}, 400
+
+
+@list_routes.route('/<int:id>/tasks', methods=['POST'])
+@login_required
+def add_task_by_list_id(id):
+    """
+    Add a new task by list id
+    """
+    list = List.query.get(id)
+
+    if not list:
+        return {'message': 'List couldn\'t be found', "statusCode": 404}, 404
+
+    if current_user.id != list.user_id:
+        return {'message': 'Forbidden', "statusCode": 403}, 403
+
+    form = TaskForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        task = Task(
+            name=form.data['name'],
+            description=form.data['description'],
+            due_date=form.data['due_date'],
+            priority=form.data['priority'],
+            completed=False,
+            list_id=id,
+            created_at=db.func.now(),
+            updated_at=db.func.now()
+        )
+        db.session.add(task)
+        db.session.commit()
+        return task.to_dict_task()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

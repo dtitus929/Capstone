@@ -20,17 +20,16 @@ class Task(db.Model):
     # Relationships
     list = db.relationship("List", back_populates="tasks")
 
-
-def to_dict(self):
-    return {
-        "id": self.id,
-        "name": self.name,
-        "description": self.description,
-        "due_date": self.due_date,
-        "priority": self.priority,
-        "completed": self.completed,
-        "list_id": self.channel_id,
-        "completed": self.completed,
-        "created_at": self.created_at,
-        "updated_at": self.updated_at
-    }
+    def to_dict_task(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+            "due_date": self.due_date,
+            "priority": self.priority,
+            "completed": self.completed,
+            "list_id": self.list_id,
+            "completed": self.completed,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at
+        }

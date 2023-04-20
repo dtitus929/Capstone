@@ -9,9 +9,9 @@ from app.models import db, Task, List
 task_routes = Blueprint('tasks', __name__)
 
 
-@task_routes.route("/", methods=["GET"])
+@task_routes.route("/<int:id>", methods=["GET"])
 @login_required
-def get_alltasks_by_listid():
+def edit_task(id):
 
     return "hi"
 

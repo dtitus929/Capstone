@@ -14,11 +14,13 @@ class Task(db.Model):
     priority = db.Column(db.Integer, default=3)
     completed = db.Column(db.Boolean, nullable=False, default=False)
     list_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("lists.id")))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     created_at = db.Column(db.DateTime, default=db.func.now())
     updated_at = db.Column(db.DateTime, default=db.func.now())
 
     # Relationships
     list = db.relationship("List", back_populates="tasks")
+    user = db.relationship("User", back_populates="tasks")
 
     def to_dict_task(self):
         return {
@@ -29,6 +31,7 @@ class Task(db.Model):
             "priority": self.priority,
             "completed": self.completed,
             "list_id": self.list_id,
+            "user_id": self.user_id,
             "completed": self.completed,
             "created_at": self.created_at,
             "updated_at": self.updated_at

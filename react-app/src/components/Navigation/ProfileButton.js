@@ -4,6 +4,7 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import chickenHead from './chicken-head.png'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -39,18 +40,19 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button onClick={openMenu} className="profile-button">
+        <span style={{ fontSize: '11px', paddingRight: '5px' }}>&#9660;</span><i className="fa fa-cog" />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.first_name} {user.last_name}</li>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
+            <div className="profile-popup" style={{ padding: '12px 0px 2px 0px', margin: '0px' }}>
+              <div style={{ textAlign: 'center' }}><img src={`${chickenHead}`} alt="Smack" style={{ width: '100px ' }} /></div>
+              <div><b>{user.first_name} {user.last_name}</b></div>
+              <div>{user.username}</div>
+              <div>{user.email}</div>
+              <div style={{ textAlign: 'center' }}><button onClick={handleLogout} className="logout-button">Log Out</button></div>
+            </div>
           </>
         ) : (
           <>

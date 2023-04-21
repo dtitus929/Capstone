@@ -108,26 +108,30 @@ function LoginSignupPage() {
                         Already a member ?&nbsp;&nbsp;&nbsp;<b>Sign in below</b>.
                     </div >
 
-                    {errors.length > 0 &&
-                        <div style={{ paddingTop: '20px', paddingLeft: '20px', color: 'red', display: 'block' }}>
-                            <li>The provided credentials were invalid.</li>
-                        </div >
-                    }
+                    <div className="form-div">
 
-                    <form onSubmit={handleSubmitLogin}>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', paddingTop: '26px' }}>
+                        {errors.length > 0 &&
+                            <div style={{ paddingTop: '20px', paddingLeft: '24px', color: 'red', display: 'block' }}>
+                                <li>The provided credentials were invalid.</li>
+                            </div >
+                        }
 
-                            <input className="login-input-field" type="text" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)} required />
-                            <input className="login-input-field" type="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)} required />
-                            <button className="login-input-submit" type="submit">Sign In</button>
+                        <form onSubmit={handleSubmitLogin}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', paddingTop: '24px' }}>
 
-                        </div>
+                                <input className="login-input-field" type="text" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)} required />
+                                <input className="login-input-field" type="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)} required />
+                                <button className="login-input-submit" type="submit">Sign In</button>
+
+                            </div>
 
 
-                        <div style={{ textAlign: 'center' }}>
-                            <button className="demo-user" onClick={async () => { handleDemo() }} type="submit"> Demo User</button>
-                        </div>
-                    </form>
+                            <div style={{ textAlign: 'center' }}>
+                                <button className="demo-user" onClick={async () => { handleDemo() }} type="submit"> Demo User</button>
+                            </div>
+                        </form>
+
+                    </div>
 
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '30px 0px' }}>
                         < div style={{
@@ -156,29 +160,33 @@ function LoginSignupPage() {
                         Stop forgetting. <b> Start remembering!</b>
                     </div >
 
-                    {errors.length > 0 &&
-                        <div style={{ paddingTop: '20px', paddingLeft: '20px', color: 'red', display: 'block' }}>
-                            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                        </div >
-                    }
+                    <div className="form-div" style={{ paddingBottom: '24px' }}>
 
-                    <form onSubmit={handleSubmitSignup}>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', paddingTop: '26px' }}>
-                            <input className="login-input-field" type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email"
-                                required />
-                            <input className="login-input-field" type="text" value={first_name} onChange={(e) => setFirstName(e.target.value)} placeholder="First Name"
-                                required />
-                            <input className="login-input-field" type="text" value={last_name} onChange={(e) => setLastName(e.target.value)} placeholder="Last Name"
-                                required />
-                            <input className="login-input-field" type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username"
-                                required />
-                            <input className="login-input-field" type="password" value={password} onChange={(e) => setPassword(e.target.value)}
-                                placeholder="Create Password" required />
-                            <input className="login-input-field" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}
-                                placeholder="Confirm Password" required />
-                            <button className="login-input-submit" type="submit">Sign Up</button>
-                        </div>
-                    </form>
+                        {errors.length > 0 &&
+                            <div style={{ paddingTop: '20px', paddingLeft: '20px', color: 'red', display: 'block' }}>
+                                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                            </div >
+                        }
+
+                        <form onSubmit={handleSubmitSignup}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', paddingTop: '24px' }}>
+                                <input className="login-input-field" type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email"
+                                    required />
+                                <input className="login-input-field" type="text" value={first_name} onChange={(e) => setFirstName(e.target.value)} placeholder="First Name"
+                                    required />
+                                <input className="login-input-field" type="text" value={last_name} onChange={(e) => setLastName(e.target.value)} placeholder="Last Name"
+                                    required />
+                                <input className="login-input-field" type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username"
+                                    required />
+                                <input className="login-input-field" type="password" value={password} onChange={(e) => setPassword(e.target.value)}
+                                    placeholder="Create Password" required />
+                                <input className="login-input-field" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}
+                                    placeholder="Confirm Password" required />
+                                <button className="login-input-submit" type="submit">Sign Up</button>
+                            </div>
+                        </form>
+
+                    </div>
 
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '30px 0px' }}>
                         <div style={{ height: '1px', width: '100%', backgroundColor: '#7d7d7d' }}></div>

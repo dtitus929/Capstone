@@ -27,7 +27,9 @@ function App() {
 
       {sessionUser && isLoaded && (
         <>
-          <Navigation isLoaded={isLoaded} />
+          <div id="layout-top">
+            <Navigation isLoaded={isLoaded} />
+          </div>
 
           < Switch >
             <Route path="/login" >

@@ -26,3 +26,64 @@ button:hover {
 }
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+#layout-top {
+    background-color: #0060bf;
+    height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+}
+
+.profile-popup {
+    background-color: #f7f7f7;
+    border: double white rgb(255, 0, 0);
+    border: 1px solid grey;
+    border: 5px solid #ffffff;
+    border-radius: 8px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-dropdown {
+    position: absolute;
+    transform: translateX(-200px);
+    top: 34px;
+    padding: 0px;
+    margin: 0px;
+    z-index: 30;
+    width: 220px;
+}
+
+.profile-popup div {
+    padding: 0px 0px;
+    margin: 0px 20px;
+    color: #1d1d1d;
+}
+
+.profile-button {
+    border: none;
+    padding: 2px;
+    font-size: 22px;
+    background-color: inherit;
+    color: #b3cfec;
+}
+
+.profile-button:hover {
+    color: #ffffff;
+}
+
+.logout-button {
+    background-color: #0060bf;
+    color: #ffffff;
+    margin: 14px 0px;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 24px;
+    border-radius: 20px;
+}
+
+.logout-button:hover {
+    background-color: #006bd6;
+}

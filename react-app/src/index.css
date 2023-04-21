@@ -25,7 +25,7 @@ button:hover {
     height: 100%;
 }
 
-/* %%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+/* %%%%%%%%% Login/Signup + Profile Button/Popup   %%%%%%%%%%%% */
 
 #layout-top {
     background-color: #0060bf;
@@ -86,4 +86,135 @@ button:hover {
 
 .logout-button:hover {
     background-color: #006bd6;
+}
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+#layout-main {
+    display: flex;
+    margin-top: 10px;
+    height: 100%;
+    border-radius: 50px;
+}
+
+#layout-leftnav {
+    width: 20%;
+    max-width: 210px;
+    min-width: 180px;
+}
+
+.channels-leftside {
+    padding: 0px 20px;
+}
+
+#layout-content {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    height: 100%;
+    position: relative;
+}
+
+#layout-content-tasks-holder {
+    background-color: #e4eef8;
+    align-self: stretch;
+    height: calc(100vh - 50px);
+    flex-grow: 1.05;
+    border-top-left-radius: 10px;
+}
+
+#layout-content-tasks {
+    background-color: white;
+    align-self: stretch;
+    height: calc(100vh - 50px);
+    /* height: 100%; */
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    padding-top: 14px;
+    display: flex;
+    flex-direction: column;
+}
+
+#layout-content-right {
+    /* flex-grow: .95; */
+    min-width: 420px;
+    background-color: #E4EEF8;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding: 14px;
+}
+
+#layout-content-right-taskbar {
+    /* flex-grow: .95; */
+    width: 420px;
+    background-color: #ffffff;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding: 14px;
+    z-index: 20;
+    position: absolute;
+    right: 0px;
+    height: calc(100vh - 60px);
+    border-left: 1px solid #bdbdbd;
+    display: none;
+}
+
+
+/* %%%%%%%% Task Card %%%%%%%% */
+
+
+.task-card {
+    border-top: 1px dotted #b7b7b7;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    background-color: #ffffff;
+}
+
+.task-card:hover {
+    background-color: #ffffcd;
+    cursor: pointer;
+}
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+@media screen and (max-width:1023px) {
+    #layout-content {
+        flex-direction: column-reverse;
+        background-color: #e4eef8;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+    }
+
+    #layout-content-tasks-holder {
+        background-color: #ffffff;
+        border-top-right-radius: 10px;
+        margin-right: 10px;
+    }
+
+    #layout-content-tasks {
+        height: calc(100vh - 168px);
+        background-color: #ffffff;
+    }
+
+    #layout-content-right {
+        flex-grow: .95;
+        background-color: #e4eef8;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        margin-bottom: 0px;
+    }
+
+    #layout-content-right-taskbar {
+        margin-bottom: 0px;
+        height: calc(100vh - 50px);
+    }
+
+
 }

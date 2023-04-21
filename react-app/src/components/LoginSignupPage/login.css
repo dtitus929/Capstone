@@ -1,0 +1,91 @@
+.login-signup {
+    width: 416px;
+    margin: 42px auto;
+}
+
+.login-input-field {
+    font-size: 18px;
+    padding: 12px;
+    border: 1px solid #b9b9b9;
+    border-radius: 5px;
+}
+
+.login-input-submit {
+    font-size: 18px;
+    padding: 12px;
+    margin-top: 4px;
+    color: #ffffff;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+    background-color: #0060bf;
+}
+
+.login-input-submit:hover {
+    background-color: #006bd6;
+}
+
+.create-account {
+    padding-top: 12px;
+    border: none;
+    background-color: inherit;
+    font-size: 15px;
+    color: #0060bf;
+}
+
+.create-account:hover {
+    text-decoration: underline;
+}
+
+.demo-user {
+    padding-top: 12px;
+    border: none;
+    background-color: inherit;
+    font-size: 12px;
+    color: #0060bf;
+}
+
+.demo-user:hover {
+    text-decoration: underline;
+}
+
+.footer-holder {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 18px 35px;
+    background-color: #D6E7F5;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.footer-link {
+    font-size: 13px;
+    color: #555555;
+}
+
+
+.footer-button {
+    background-color: inherit;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    color: #555555;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.footer-button:hover {
+    /* background-color: #f3f3f3; */
+    color: #0060bf;
+}

@@ -64,7 +64,7 @@ function LoginSignupPage() {
             setErrors(data);
             return
         }
-        history.push("/");
+        history.push("/1");
     };
 
     const handleSubmitSignup = async (e) => {

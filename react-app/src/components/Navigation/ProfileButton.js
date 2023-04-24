@@ -47,11 +47,16 @@ function ProfileButton({ user }) {
         {user ? (
           <>
             <div className="profile-popup" style={{ padding: '12px 0px 2px 0px', margin: '0px' }}>
-              <div style={{ textAlign: 'center' }}><img src={`${chickenHead}`} alt="Smack" style={{ width: '100px ' }} /></div>
+
+              <div style={{ display: 'flex', alignContent: 'space-between', alignItems: 'flex-start', marginLeft: '40px' }}>
+                <div style={{ textAlign: 'center' }}><img src={`${chickenHead}`} alt="Smack" style={{ width: '100px ' }} /></div>
+                <button className="close-popup" onClick={closeMenu}><i className="fas fa-times" /></button>
+              </div>
               <div><b>{user.first_name} {user.last_name}</b></div>
               <div>{user.username}</div>
               <div>{user.email}</div>
               <div style={{ textAlign: 'center' }}><button onClick={handleLogout} className="logout-button">Log Out</button></div>
+
             </div>
           </>
         ) : (

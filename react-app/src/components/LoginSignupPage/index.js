@@ -79,7 +79,7 @@ function LoginSignupPage() {
             setErrors(['Password does not match confirmation password.']);
             return
         }
-        history.push("/channels/explore");
+        history.push("/1");
     };
 
 

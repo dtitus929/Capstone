@@ -7,7 +7,20 @@ function TaskCard(props) {
 
     const { arrTasks } = props;
 
-    console.log(arrTasks);
+    // console.log(arrTasks);
+
+    const adjustTime = (date) => {
+        const thisDate = new Date(`${date} 00:00:00`);
+        // console.log(thisDate);
+        // const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+        const options = { month: 'short', day: 'numeric' };
+        if (date) {
+            return thisDate.toLocaleDateString("en-US", options);
+        } else {
+            return '';
+        }
+
+    }
 
 
     return (
@@ -19,7 +32,7 @@ function TaskCard(props) {
                     <div className="taskcard-content">
                         <div className={`priority-${priority}`}></div>
                         <div style={{ width: '100%' }}>{name}</div>
-                        <div style={{ whiteSpace: 'nowrap' }}>{due_date}</div>
+                        <div style={{ whiteSpace: 'nowrap', color: '#9b9b9b', marginRight: '10px' }}>{adjustTime(due_date)}</div>
                         {/* <div>{`${completed}`}</div> */}
                     </div>
 

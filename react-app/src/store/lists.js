@@ -33,6 +33,7 @@ export const addList = (payload) => {
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
 export const getAllListsThunk = () => async (dispatch) => {
     const response = await fetch("/api/lists/");
 

@@ -1,5 +1,6 @@
 const GET_ALL_TASKS_BY_LIST = "tasks/GET_ALL_TASKS_BY_LIST ";
 const NO_TASKS_FOUND = "tasks/NO_TASKS_FOUND ";
+const ADD_TASK = "tasks/ADD_TASK ";
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -11,6 +12,12 @@ const allTasksByList = (tasks) => ({
 
 const noTasksFound = () => ({
     type: NO_TASKS_FOUND,
+});
+
+const addTask = (task) => ({
+    type: ADD_TASK,
+    payload: task,
+
 });
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -33,13 +40,43 @@ export const getListTasksThunk = (id) => async (dispatch) => {
     }
 };
 
+
+export const addTaskThunk = (listId, name, description, due_date, priority) => async (dispatch) => {
+
+    const response = await fetch(`/api/lists/${listId}/tasks`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            name,
+            description,
+            due_date,
+            priority,
+        }),
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(addTask(data));
+        return null;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ["An error occurred. Please try again."];
+    }
+};
+
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 const initialState = { listTasks: {} };
 
 export default function taskReducer(state = initialState, action) {
 
-    // let newState;
+    let newState;
 
     switch (action.type) {
 
@@ -54,6 +91,12 @@ export default function taskReducer(state = initialState, action) {
             return {
                 ...state, listTasks: {}
             }
+
+        case ADD_TASK:
+            newState = { ...state }
+            newState.listTasks = { ...state.listTasks };
+            newState.listTasks[action.payload.id] = action.payload;
+            return newState;
 
 
         // case EDIT_LIST:

@@ -4,7 +4,7 @@
     margin: 0;
 }
 
-html, body, textarea, select, label {
+html, body {
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
     color: #000000;
@@ -212,6 +212,7 @@ button:hover {
     margin-right: 9px;
 }
 
+
 .priority-2 {
     background-color: #f2cf30;
     height: 27px;
@@ -226,6 +227,56 @@ button:hover {
     width: 3px;
     min-width: 3px;
     margin-right: 9px;
+}
+
+.task-formbottom {
+    padding: 8px 8px 5px 8px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-right: 1px solid #838383;
+    border-left: 1px solid #838383;
+    border-bottom: 1px solid #838383;
+    background-color: #f8f8f8;
+    margin: 0px 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.task-forms-submit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4px;
+}
+
+.task-input-field {
+    padding: 5px 8px;
+    border-radius: 4px;
+    border: 1px solid #838383;
+}
+
+.task-textarea-field {
+    padding: 5px 8px;
+    border-radius: 4px;
+    /* width: 400px; */
+    width: 100%;
+    height: 44px;
+    border: 1px solid #838383;
+    resize: none;
+}
+
+.task-input-submit {
+    background-color: #0060bf;
+    border-radius: 5px;
+    border: none;
+    color: #ffffff;
+    padding: 6px 14px;
+    white-space: nowrap;
+    margin: 4px 10px 4px 0px;
+}
+
+.task-input-submit:hover {
+    background-color: #006bd6;
 }
 
 /* %%%%%%%% List Card %%%%%%%% */

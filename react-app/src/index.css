@@ -209,6 +209,8 @@ button:hover {
     padding: 2px 5px 1px 5px;
     border-radius: 3px;
     margin: 2px 0px 0px 9px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .list-link:hover {

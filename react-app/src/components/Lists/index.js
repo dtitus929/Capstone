@@ -18,6 +18,8 @@ function Lists() {
 
   const openMenu = () => {
     if (showMenu) return;
+    setName('');
+    setErrors([]);
     setShowMenu(true);
   };
 
@@ -46,13 +48,16 @@ function Lists() {
     e.preventDefault();
 
     const data = await dispatch(listActions.addChannelThunk(name, 'standard'));
-    closeMenu();
-    history.push(`/${data.id}`);
-    // console.log('What the Data:', data)
-    if (data) {
+
+    console.log('What the Data:', data)
+    if (!data.id) {
       setErrors(data);
       return
+    } else {
+      closeMenu();
+      history.push(`/${data.id}`);
     }
+
 
   };
 

@@ -32,7 +32,6 @@ class Task(db.Model):
             "completed": self.completed,
             "list_id": self.list_id,
             "user_id": self.user_id,
-            "completed": self.completed,
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }

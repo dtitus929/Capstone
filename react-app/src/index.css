@@ -188,13 +188,44 @@ button:hover {
     font-size: 13px;
     display: flex;
     align-items: center;
-    padding: 10px 14px;
+    padding: 4px 14px;
     background-color: #ffffff;
 }
 
 .task-card:hover {
     background-color: #ffffcd;
     cursor: pointer;
+}
+
+.taskcard-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.priority-1 {
+    background-color: #ff0000;
+    height: 27px;
+    width: 3px;
+    min-width: 3px;
+    margin-right: 9px;
+}
+
+.priority-2 {
+    background-color: #f2cf30;
+    height: 27px;
+    width: 3px;
+    min-width: 3px;
+    margin-right: 9px;
+}
+
+.priority-3 {
+    background-color: #cbcbcb;
+    height: 27px;
+    width: 3px;
+    min-width: 3px;
+    margin-right: 9px;
 }
 
 /* %%%%%%%% List Card %%%%%%%% */

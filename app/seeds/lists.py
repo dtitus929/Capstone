@@ -10,9 +10,10 @@ def seed_lists():
     list4 = List(name='Work', type='standard',  user_id=1)
     list5 = List(name='Inbox', type='inbox', user_id=2)
     list6 = List(name='Trash', type='trash', user_id=2)
-    list7 = List(name="Franks' Party", type='standard',  user_id=2)
+    list7 = List(name="U2 ListA", type='standard',  user_id=2)
     list8 = List(name='Inbox', type='inbox', user_id=3)
     list9 = List(name='Trash', type='trash', user_id=3)
+    list10 = List(name='U3 ListA', type='standard', user_id=3)
 
     db.session.add(list1)
     db.session.add(list2)
@@ -23,6 +24,7 @@ def seed_lists():
     db.session.add(list7)
     db.session.add(list8)
     db.session.add(list9)
+    db.session.add(list10)
 
     db.session.commit()
 

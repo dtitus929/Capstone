@@ -49,7 +49,6 @@ function Lists() {
 
     const data = await dispatch(listActions.addChannelThunk(name, 'standard'));
 
-    console.log('What the Data:', data)
     if (!data.id) {
       setErrors(data);
       return

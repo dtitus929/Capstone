@@ -202,11 +202,12 @@ button:hover {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    padding: 2px 0px;
 }
 
 .priority-1 {
     background-color: #ff0000;
-    height: 27px;
+    min-height: 27px;
     width: 3px;
     min-width: 3px;
     margin-right: 9px;
@@ -215,7 +216,7 @@ button:hover {
 
 .priority-2 {
     background-color: #f2cf30;
-    height: 27px;
+    min-height: 27px;
     width: 3px;
     min-width: 3px;
     margin-right: 9px;
@@ -223,7 +224,7 @@ button:hover {
 
 .priority-3 {
     background-color: #cbcbcb;
-    height: 27px;
+    min-height: 27px;
     width: 3px;
     min-width: 3px;
     margin-right: 9px;

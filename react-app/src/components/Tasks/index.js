@@ -76,7 +76,7 @@ function Tasks() {
                 <form onSubmit={addTask}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0px', padding: '10px 20px 20px 20px' }}>
 
-                        <input id="task-name" autocomplete="off" className="task-input-field" type="text" value={name} placeholder="Add New Task" onChange={(e) => setName(e.target.value)} required />
+                        <input id="task-name" autocomplete="off" className="task-input-field" style={{ fontSize: '17px' }} type="text" value={name} placeholder="Add New Task" onChange={(e) => setName(e.target.value)} required />
 
                         <div id="expanded-task-form" className="task-formbottom">
 

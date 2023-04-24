@@ -30,9 +30,9 @@ function TaskCard(props) {
 
                 <div key={id} className="task-card" onClick={() => { window.showHideTaskbar('show') }}>
                     <div className="taskcard-content">
-                        <div className={`priority-${priority}`}></div>
+                        <div className={`priority-${priority}`} style={{ flexGrow: 1, alignSelf: 'stretch' }}></div>
                         <div style={{ width: '100%' }}>{name}</div>
-                        <div style={{ whiteSpace: 'nowrap', color: '#9b9b9b', marginRight: '10px' }}>{adjustTime(due_date)}</div>
+                        <div style={{ whiteSpace: 'nowrap', color: '#9b9b9b', margin: '0px 8px 0px 10px', width: '45px' }}>{adjustTime(due_date)}</div>
                         {/* <div>{`${completed}`}</div> */}
                     </div>
 

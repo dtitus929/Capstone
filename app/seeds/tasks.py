@@ -58,13 +58,24 @@ def seed_tasks():
         list_id=3,
         user_id=1
     )
+
+    u1l4t1 = Task(
+        name='This is task 1 in list 4 for user 1',
+        description="Description for task 1, list 4, user 1",
+        due_date='2023-04-27',
+        priority=3,
+        completed=False,
+        list_id=4,
+        user_id=1
+    )
+
     u2l1t1 = Task(
         name='This is task 1 in list 1 for user 2',
         description="Description for task 1, list 1, user 2",
         due_date='',
         priority=3,
         completed=False,
-        list_id=4,
+        list_id=5,
         user_id=2
     )
 
@@ -74,7 +85,17 @@ def seed_tasks():
         due_date='2023-04-27',
         priority=1,
         completed=False,
-        list_id=5,
+        list_id=6,
+        user_id=2
+    )
+
+    u2l3t1 = Task(
+        name='This is task 1 in list 3 for user 2',
+        description="Description for task 1, list 3, user 2",
+        due_date='2023-04-27',
+        priority=1,
+        completed=True,
+        list_id=7,
         user_id=2
     )
 
@@ -82,9 +103,19 @@ def seed_tasks():
         name='This is task 1 in list 1 for user 3',
         description="Description for task 1, list 1, user 3",
         due_date='2023-05-01',
+        priority=1,
+        completed=False,
+        list_id=8,
+        user_id=3
+    )
+
+    u3l2t1 = Task(
+        name='This is task 1 in list 2 for user 3',
+        description="Description for task 1, list 2, user 3",
+        due_date='2023-05-01',
         priority=2,
         completed=False,
-        list_id=6,
+        list_id=9,
         user_id=3
     )
 
@@ -93,10 +124,13 @@ def seed_tasks():
     db.session.add(u1l1t3)
     db.session.add(u1l2t1)
     db.session.add(u1l2t2)
+    db.session.add(u1l4t1)
     db.session.add(u1l3t1)
     db.session.add(u2l1t1)
     db.session.add(u2l2t1)
+    db.session.add(u2l3t1)
     db.session.add(u3l1t1)
+    db.session.add(u3l2t1)
 
     db.session.commit()
 

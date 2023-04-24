@@ -211,6 +211,7 @@ button:hover {
     margin: 2px 0px 0px 9px;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .list-link:hover {

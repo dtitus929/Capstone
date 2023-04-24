@@ -43,11 +43,12 @@ function ListCard(props) {
     const handleEditList = async (e) => {
         e.preventDefault();
 
-        console.log('fromSubmit', list_name)
-        const data = await dispatch(listActions.editListThunk({ id: id, name: list_name }));
+        const data = await dispatch(listActions.editListThunk(id, list_name));
         if (data) {
             setErrors(data);
             return
+        } else {
+            closeMenu();
         }
     };
 

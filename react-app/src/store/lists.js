@@ -47,25 +47,29 @@ export const getAllListsThunk = () => async (dispatch) => {
 
 // =================
 
-export const editListThunk = (id, list_name) => async (dispatch) => {
-    console.log('MyID:', id)
-    console.log('MyName:', list_name);
+export const editListThunk = (id, name) => async (dispatch) => {
+    console.log('MyID:', id);
+    console.log('MyName:', name);
     const response = await fetch(`/api/lists/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(list_name)
+        body: JSON.stringify({ name }),
     });
 
     console.log('RESPONSE:', response)
 
     if (response.ok) {
         const data = await response.json();
-        if (data.errors) {
-            return;
-        }
         dispatch(editList(data));
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ["An error occurred. Please try again."];
     }
 };
 
@@ -102,6 +106,13 @@ export const addChannelThunk = (name, type) => async dispatch => {
         const data = await response.json()
         dispatch(addList(data))
         return data
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ["An error occurred. Please try again."];
     }
 }
 

@@ -88,6 +88,20 @@ button:hover {
     background-color: #006bd6;
 }
 
+.close-popup {
+    background-color: inherit;
+    border-radius: 4px;
+    color: #4d4d4d;
+    border: none;
+    font-size: 14px;
+    padding: 2px 4px;
+    transform: scale(1, 1.2);
+}
+
+.close-popup:hover {
+    background-color: #eaeaea;
+}
+
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 
 #layout-main {
@@ -98,13 +112,15 @@ button:hover {
 }
 
 #layout-leftnav {
-    width: 20%;
+    /* width: 20%;
     max-width: 210px;
-    min-width: 180px;
+    min-width: 180px; */
+    width: 210px;
+    min-width: 210px;
 }
 
-.channels-leftside {
-    padding: 0px 20px;
+.lists-leftside {
+    padding: 0px 5px;
 }
 
 #layout-content {
@@ -181,6 +197,64 @@ button:hover {
     cursor: pointer;
 }
 
+/* %%%%%%%% List Card %%%%%%%% */
+
+
+.list-link {
+    font-size: 14px;
+    background-color: inherit;
+    text-decoration: none;
+    width: 100%;
+    color: #000000;
+    padding: 2px 5px 1px 5px;
+    border-radius: 3px;
+    margin: 2px 0px 0px 9px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.list-link:hover {
+    background-color: #bcd0eb;
+}
+
+.editlist-button {
+    font-size: 11px;
+    background-color: inherit;
+    border: none;
+    margin-right: 5px;
+    padding: 3px;
+    border-radius: 3px;
+    position: relative;
+}
+
+.editlist-button:hover {
+    background-color: #bcd0eb;
+}
+
+.edit-list-popup {
+    background-color: #ffffff;
+    border: 1px solid #adadad;
+    border-radius: 8px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 10px 20px 10px;
+    position: absolute;
+    transform: translateX(400px);
+    top: -80px;
+    width: 300px;
+}
+
+.add-list-popup {
+    background-color: #ffffff;
+    border: 1px solid #adadad;
+    border-radius: 8px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 10px 20px 10px;
+    position: absolute;
+    transform: translateX(395px);
+    top: 165px;
+    width: 300px;
+}
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 

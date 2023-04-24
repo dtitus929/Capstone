@@ -30,7 +30,7 @@ function App() {
             <Navigation isLoaded={isLoaded} />
           </div>
           < Switch >
-            <Route path="/:channelId">
+            <Route path="/:listId">
               <Main />
             </Route>
           </Switch >

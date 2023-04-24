@@ -1,15 +1,63 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as listActions from '../../store/lists'
 import { Link } from "react-router-dom";
-// import { useHistory } from "react-router-dom";
+import ListCard from "../ListCard";
+import { useParams, useHistory } from "react-router-dom";
 
 
 function Lists() {
 
-  const [curOpen, setCurOpen] = useState('');
-
+  const history = useHistory();
   const dispatch = useDispatch();
+
+  const [showMenu, setShowMenu] = useState(false);
+  const ulRef = useRef();
+  const [name, setName] = useState('');
+  const [errors, setErrors] = useState([]);
+
+  const openMenu = () => {
+    if (showMenu) return;
+    setShowMenu(true);
+  };
+
+  // ---------
+
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = (e) => {
+      if (!ulRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener("click", closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
+
+  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const closeMenu = () => setShowMenu(false);
+
+  // ---------
+
+  const addList = async (e) => {
+    e.preventDefault();
+
+    const data = await dispatch(listActions.addChannelThunk(name, 'standard'));
+    closeMenu();
+    history.push(`/${data.id}`);
+    // console.log('What the Data:', data)
+    if (data) {
+      setErrors(data);
+      return
+    }
+
+  };
+
+
+  const { listId } = useParams();
 
 
   useEffect(() => {
@@ -18,24 +66,10 @@ function Lists() {
 
   const allLists = useSelector((state) => state.lists.allLists);
 
-  const arrLists = allLists;
+  const arrLists = Object.values(allLists);
 
-  const handleListEdit = (id, action) => {
-    showListEdit(id, action)
-    setCurOpen(`editeDeleteList-${id}`)
-  }
 
-  const showListEdit = (id, action) => {
-    if (action === 'show') {
-      document.getElementById(`editeDeleteList-${id}`).style.display = 'block'
-      if (curOpen) {
-        document.getElementById(`${curOpen}`).style.display = 'none'
-      }
-    } else {
-      document.getElementById(`editeDeleteList-${id}`).style.display = 'none'
-    }
 
-  }
 
   return (
     <>
@@ -44,28 +78,105 @@ function Lists() {
       {arrLists?.map(({ id, name, type }) => (
 
 
+
+
+
         <div key={id} style={{ display: 'flex', justifyContent: 'space-between', position: 'relative' }}>
 
+          {type === 'inbox' && (
+            <>
 
-          <Link title={name} to={`/${id}`}>
-            {name}{curOpen}
-          </Link>
+              <ListCard id={id} name={name} type={type} listId={listId} />
+
+            </>
+          )}
+
+        </div >
 
 
-          <div style={type === 'standard' ? { display: 'block' } : { display: 'none' }}>
-            <div>
-              <button onClick={() => { handleListEdit(id, 'show') }} className="standard-button">ED</button>
+
+      ))
+      }
+
+
+      {arrLists?.map(({ id, name, type }) => (
+
+
+        <div key={id} style={{ display: 'flex', justifyContent: 'space-between', position: 'relative' }}>
+
+          {type === 'trash' && (
+            <>
+
+              <ListCard id={id} name={name} type={type} listId={listId} />
+
+            </>
+          )}
+
+        </div >
+
+
+      ))
+      }
+
+      {/* %%%%%%%%%%%%%%%%%% */}
+
+
+      <div style={{ fontSize: '14px', margin: '16px 0px 0px 5px', display: 'flex', justifyContent: 'space-between', borderTop: '1px solid #bcd0eb', paddingTop: '10px' }}>
+        <div><span style={{ fontSize: '6px', padding: '0px 3px 2px 0px' }}>&#9660;</span>Lists</div>
+        <div><button onClick={openMenu} className="editlist-button" style={{ marginRight: '6px' }}><i className="far fa-plus-square" /></button></div>
+
+        <ul className={ulClassName} ref={ulRef}>
+          <div className="add-list-popup">
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <div style={{
+                fontWeight: 'bold', color: '#0060bf'
+              }}>Add New List</div>
+              <button className="close-popup" onClick={closeMenu}><i className="fas fa-times" /></button>
             </div>
+
+            <div className="form-div">
+
+              {errors.length > 0 &&
+                <div style={{ paddingTop: '20px', paddingLeft: '20px', color: 'red', display: 'block' }}>
+                  {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </div >
+              }
+
+              <form onSubmit={addList}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+
+                  <input className="popup-input-field" type="text" value={name} placeholder="List Name" onChange={(e) => setName(e.target.value)} required />
+                  <button className="popup-input-submit" type="submit">Add List</button>
+
+                </div>
+              </form>
+
+            </div>
+
           </div>
+        </ul>
+      </div>
 
-          <div id={`editeDeleteList-${id}`} style={{ backgroundColor: '#ffffff', position: 'absolute', display: 'none', zIndex: '30', transform: 'translateX(200px)' }}>
-            Edit/Delete<button onClick={() => { handleListEdit(id, 'hide') }} className="standard-button">X</button><br />
-          </div>
+      {/* %%%%%%%%%%%%%%%%%% */}
+
+      {arrLists?.map(({ id, name, type }) => (
 
 
-        </div>
+        <div key={id} style={{ display: 'flex', justifyContent: 'space-between', position: 'relative' }}>
 
-      ))}
+          {type === 'standard' && (
+            <>
+
+              <ListCard id={id} name={name} type={type} listId={listId} />
+
+            </>
+          )}
+
+        </div >
+
+
+      ))
+      }
 
 
     </>

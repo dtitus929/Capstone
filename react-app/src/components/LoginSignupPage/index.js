@@ -64,7 +64,7 @@ function LoginSignupPage() {
             setErrors(data);
             return
         }
-        history.push("/1");
+        history.push("/home");
     };
 
     const handleSubmitSignup = async (e) => {
@@ -79,7 +79,7 @@ function LoginSignupPage() {
             setErrors(['Password does not match confirmation password.']);
             return
         }
-        history.push("/1");
+        history.push("/home");
     };
 
 

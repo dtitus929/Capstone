@@ -5,45 +5,78 @@ import Lists from "../Lists";
 import Tasks from "../Tasks";
 import logo from './rem-eggs-logo.svg'
 import bgimage from './dotted-bg.gif'
+import EditTaskCard from "../EditTask";
 
 import * as listActions from '../../store/lists'
 import * as taskActions from '../../store/tasks'
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 function Main() {
 
+    const history = useHistory();
+
+    const [selectedTask, setSelectedTask] = useState("");
+
+    // console.log(selectedTask);
 
     const dispatch = useDispatch();
 
     const { listId } = useParams();
 
+    // console.log(listId);
 
     useEffect(() => {
         dispatch(listActions.getAllListsThunk());
     }, [dispatch, listId]);
 
     const allLists = useSelector((state) => state.lists.allLists);
+    const arrLists = Object.values(allLists);
+
+    let listInbox = [];
+    if (arrLists) {
+        listInbox = arrLists.filter(function (el) {
+            return el.name === "Inbox";
+        });
+    }
+    // if (listInbox.length) {
+    //     console.log('Inbox:', listInbox)
+    //     console.log('InboxId:', listInbox[0].id)
+    // }
+
+    let listTrash = [];
+    if (arrLists) {
+        listTrash = arrLists.filter(function (el) {
+            return el.name === "Trash";
+        });
+    }
+    if (listTrash.length) {
+        // console.log('Trash:', listTrash)
+        // console.log('TrashId:', listTrash[0].id)
+    }
+
     const thisList = allLists[listId];
 
+    if (listId === "home" && listInbox.length) {
+        history.push(`/${listInbox[0].id}`);
+    }
+
     useEffect(() => {
-        dispatch(taskActions.getListTasksThunk(listId));
+        if (listId !== 'home') {
+            dispatch(taskActions.getListTasksThunk(listId));
+        }
     }, [dispatch, listId]);
 
     const allTasks = useSelector((state) => state.tasks.listTasks);
     const arrTasks = Object.values(allTasks);
-    console.log(arrTasks);
+
     const completedTasks = arrTasks.filter(function (el) {
         return el.completed === true;
     });
-    // console.log(completedTasks);
-    // console.log(completedTasks.length);
+
     const uncompleteTasks = arrTasks.filter(function (el) {
         return el.completed === false;
     });
-    // console.log(uncompleteTasks);
-    // console.log(uncompleteTasks.length);
-
 
 
     return (
@@ -74,7 +107,7 @@ function Main() {
                 <div id="layout-content-tasks-holder">
                     <div id="layout-content-tasks">
 
-                        <Tasks />
+                        <Tasks setSelectedTask={setSelectedTask} />
 
                         {/* Dotted Repeat */}
                         <div style={{ backgroundImage: `url(${bgimage})`, backgroundRepeat: "repeat", backgroundColor: '#ffffff', height: '100%' }}></div>
@@ -85,8 +118,9 @@ function Main() {
                 {/* %%%%%%%%%%%%%%%%%%% */}
 
                 <div id="layout-content-right-taskbar">
-                    <div>Edit Task</div>
-                    <button onClick={() => { window.showHideTaskbar('hide') }}>X</button>
+
+                    <EditTaskCard id={selectedTask} />
+
                 </div>
 
 

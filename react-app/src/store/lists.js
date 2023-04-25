@@ -2,6 +2,7 @@ const GET_ALL_LISTS = "lists/GET_ALL_LISTS";
 const EDIT_LIST = "lists/EDIT_LIST";
 const DELETE_LIST = "lists/DELETE_LIST"
 const ADD_LIST = "lists/ADD_LIST"
+const CLEAR_LISTS = "lists/CLEAR_LISTS"
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -31,7 +32,19 @@ export const addList = (payload) => {
     }
 }
 
+export const clearLists = () => {
+    return {
+        type: CLEAR_LISTS,
+    }
+}
+
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+export const clearListsThunk = () => (dispatch) => {
+    dispatch(clearLists());
+};
+
+// =================
 
 
 export const getAllListsThunk = () => async (dispatch) => {
@@ -155,6 +168,11 @@ export default function listReducer(state = initialState, action) {
             newState.allLists = { ...state.allLists };
             newState.allLists[action.payload.id] = action.payload;
             return newState;
+
+        case CLEAR_LISTS:
+            return {
+                ...state, allLists: {}
+            }
 
         default:
             return state;

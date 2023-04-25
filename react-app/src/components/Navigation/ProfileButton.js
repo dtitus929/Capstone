@@ -1,12 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
+import { clearListsThunk } from '../../store/lists'
+import { clearTasksThunk } from '../../store/tasks'
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import chickenHead from './chicken-head.png'
+import { useHistory } from "react-router-dom";
 
 function ProfileButton({ user }) {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
@@ -33,6 +37,9 @@ function ProfileButton({ user }) {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    dispatch(clearListsThunk())
+    dispatch(clearTasksThunk())
+    history.push("/");
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");

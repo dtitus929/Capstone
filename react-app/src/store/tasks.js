@@ -1,6 +1,7 @@
 const GET_ALL_TASKS_BY_LIST = "tasks/GET_ALL_TASKS_BY_LIST ";
 const NO_TASKS_FOUND = "tasks/NO_TASKS_FOUND ";
 const ADD_TASK = "tasks/ADD_TASK ";
+const CLEAR_TASKS = "tasks/CLEAR_TASK ";
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -20,7 +21,19 @@ const addTask = (task) => ({
 
 });
 
+const clearTasks = () => ({
+    type: CLEAR_TASKS,
+});
+
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+export const clearTasksThunk = () => (dispatch) => {
+    dispatch(clearTasks());
+};
+
+
+// =================
+
 
 export const getListTasksThunk = (id) => async (dispatch) => {
     const response = await fetch(`/api/lists/${id}/tasks`);
@@ -39,6 +52,9 @@ export const getListTasksThunk = (id) => async (dispatch) => {
         return ["An error occurred. Please try again."];
     }
 };
+
+
+// =================
 
 
 export const addTaskThunk = (listId, name, description, due_date, priority) => async (dispatch) => {
@@ -99,27 +115,25 @@ export default function taskReducer(state = initialState, action) {
             return newState;
 
 
-        // case EDIT_LIST:
+        // case EDIT_TASK:
         //     newState = { ...state }
         //     newState.allLists = { ...state.allLists };
         //     newState.allLists[action.payload.id] = action.payload;
         //     return newState;
 
 
-        // case DELETE_LIST:
+        // case DELETE_TASK:
         //     newState = { ...state }
         //     newState.allLists = { ...state.allLists };
         //     delete newState.allLists[action.id];
         //     return newState;
 
 
-        // case ADD_LIST:
-        //     console.log('IN ADD_LIST');
-        //     console.log('ThePayload is:', action.payload);
-        //     newState = { ...state }
-        //     newState.allLists = { ...state.allLists };
-        //     newState.allLists[action.payload.id] = action.payload;
-        //     return newState;
+
+        case CLEAR_TASKS:
+            return {
+                ...state, listTasks: {}
+            }
 
         default:
             return state;

@@ -54,6 +54,7 @@ function Lists() {
       return
     } else {
       closeMenu();
+      window.showHideTaskbar('hide')
       history.push(`/${data.id}`);
     }
 

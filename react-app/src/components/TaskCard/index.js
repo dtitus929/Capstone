@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
+import { useParams, useHistory } from "react-router-dom";
 
 
 function TaskCard(props) {
 
-    const { arrTasks } = props;
+    const { arrTasks, setSelectedTask } = props;
 
-    // console.log(arrTasks);
 
     const adjustTime = (date) => {
         const thisDate = new Date(`${date} 00:00:00`);
@@ -22,13 +20,21 @@ function TaskCard(props) {
 
     }
 
+    // const { listId } = useParams();
+    // const history = useHistory();
+
+    const handleCardClick = (taskId) => {
+        setSelectedTask(taskId)
+        window.showHideTaskbar('show')
+    }
+
 
     return (
         <>
 
             {arrTasks?.map(({ id, name, description, due_date, priority, completed, list_id, user_id, created_at, updated_at }) => (
 
-                <div key={id} className="task-card" onClick={() => { window.showHideTaskbar('show') }}>
+                <div key={id} className="task-card" onClick={() => { handleCardClick(id) }}>
                     <div className="taskcard-content">
                         <div className={`priority-${priority}`} style={{ flexGrow: 1, alignSelf: 'stretch' }}></div>
                         <div style={{ width: '100%' }}>{name}</div>

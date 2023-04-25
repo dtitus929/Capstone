@@ -6,7 +6,9 @@ import * as taskActions from '../../store/tasks'
 
 
 
-function Tasks() {
+function Tasks(props) {
+
+    const { setSelectedTask } = props;
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -20,7 +22,9 @@ function Tasks() {
     const { listId } = useParams();
 
     useEffect(() => {
-        dispatch(taskActions.getListTasksThunk(listId));
+        if (listId !== 'home') {
+            dispatch(taskActions.getListTasksThunk(listId));
+        }
     }, [dispatch, listId]);
 
     // -----------
@@ -145,7 +149,7 @@ function Tasks() {
                 </form >
             </div >
 
-            <TaskCard arrTasks={arrTasks} />
+            <TaskCard arrTasks={arrTasks} setSelectedTask={setSelectedTask} />
 
         </>
     );

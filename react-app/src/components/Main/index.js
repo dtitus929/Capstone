@@ -96,9 +96,10 @@ function Main() {
 
                     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
 
-                        <div>
+                        <div id="list-nums-holder">
                             {thisList && (
                                 <div id="list-name">
+
                                     {thisList.name}
                                     <span style={{ fontSize: '14px', marginLeft: '30px', color: 'rgb(0, 0, 0, .25)' }}>{arrTasks.length} total tasks</span>
 

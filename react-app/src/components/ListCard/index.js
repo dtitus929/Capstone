@@ -9,7 +9,7 @@ function ListCard(props) {
 
 
     const dispatch = useDispatch();
-    // const history = useHistory();
+    const history = useHistory();
 
     const { id, name, type, listId, setSelectedTask } = props;
     const [showMenu, setShowMenu] = useState(false);
@@ -58,6 +58,7 @@ function ListCard(props) {
 
         const data = await dispatch(listActions.deleteListThunk(id));
         closeMenu();
+        history.push("/home");
 
         if (data) {
             setErrors(data);

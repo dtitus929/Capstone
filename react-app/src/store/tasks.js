@@ -36,6 +36,10 @@ export const clearTasksThunk = () => (dispatch) => {
 
 
 export const getListTasksThunk = (id) => async (dispatch) => {
+
+    if (id === 'home') {
+        return
+    }
     const response = await fetch(`/api/lists/${id}/tasks`);
 
     if (response.ok) {

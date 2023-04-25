@@ -74,7 +74,7 @@ function EditTaskCard(props) {
                     <div>{thisTask[0].description}</div>
                     <div>{thisTask[0].due_date}</div>
                     <div>{thisTask[0].priority}</div>
-                    <div>{thisTask[0].completed}</div>
+                    <div>{`${thisTask[0].completed}`}</div>
                     <div>{thisTask[0].list_id}</div>
                 </>
             )}

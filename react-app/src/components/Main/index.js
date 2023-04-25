@@ -94,42 +94,45 @@ function Main() {
 
                 <div id="layout-content-right">
 
-                    {thisList && (
-                        <div id="list-name">
-                            {thisList.name}
-                            <span style={{ fontSize: '14px', marginLeft: '30px', color: 'rgb(0, 0, 0, .25)' }}>{arrTasks.length} total tasks</span>
+                    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
+
+                        <div>
+                            {thisList && (
+                                <div id="list-name">
+                                    {thisList.name}
+                                    <span style={{ fontSize: '14px', marginLeft: '30px', color: 'rgb(0, 0, 0, .25)' }}>{arrTasks.length} total tasks</span>
+
+                                </div>
+                            )}
+
+                            <div id="task-num-holder">
+
+                                {arrTasks && (
+                                    <div className="task-num">
+                                        <div style={{ fontSize: '19px', fontWeight: '600', color: '#0260bf' }}>{uncompleteTasks.length}</div>
+                                        <div style={{ fontSize: '11px' }} >incomplete</div>
+                                    </div>
+
+                                )}
+
+                                {arrTasks && (
+                                    <div className="task-num">
+                                        <div style={{ fontSize: '19px', fontWeight: '600', color: '#838a93' }}>{completedTasks.length}</div>
+                                        <div style={{ fontSize: '11px', color: '#838a93' }} >completed</div>
+                                    </div>
+
+                                )}
+
+                            </div>
 
                         </div>
-                    )}
 
-                    <div id="task-num-holder">
-
-                        {arrTasks && (
-                            <div className="task-num">
-                                <div style={{ fontSize: '19px', fontWeight: '600', color: '#0260bf' }}>{uncompleteTasks.length}</div>
-                                <div style={{ fontSize: '11px' }} >incomplete</div>
-                            </div>
-
-                        )}
-
-                        {arrTasks && (
-                            <div className="task-num">
-                                <div style={{ fontSize: '19px', fontWeight: '600', color: '#838a93' }}>{completedTasks.length}</div>
-                                <div style={{ fontSize: '11px', color: '#838a93' }} >completed</div>
-                            </div>
-
-                        )}
+                        <div id="copyright-area">© 2023 Remember The Eggs</div>
 
 
                     </div>
 
-
-
-
-
                 </div>
-
-
 
                 {/* %%%%%%%%%%%%%%%%%%% */}
 

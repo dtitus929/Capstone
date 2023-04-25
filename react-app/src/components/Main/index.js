@@ -89,7 +89,7 @@ function Main() {
             <div id="layout-leftnav">
                 <div style={{ margin: '0px 20px 16px 10px' }}><img src={`${logo}`} alt='' /></div>
                 <div className="lists-leftside">
-                    <Lists />
+                    <Lists setSelectedTask={setSelectedTask} />
                 </div>
             </div>
 

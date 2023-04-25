@@ -76,7 +76,7 @@ function Tasks() {
                 <form onSubmit={addTask}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0px', padding: '10px 20px 20px 20px' }}>
 
-                        <input id="task-name" autocomplete="off" className="task-input-field" style={{ fontSize: '17px' }} type="text" value={name} placeholder="Add New Task" onChange={(e) => setName(e.target.value)} required />
+                        <input id="task-name" autoComplete="off" className="task-input-field" style={{ fontSize: '17px' }} type="text" value={name} placeholder="Add New Task" onChange={(e) => setName(e.target.value)} required />
 
                         <div id="expanded-task-form" className="task-formbottom">
 
@@ -88,7 +88,7 @@ function Tasks() {
                                 <div style={{ display: 'flex', flexDirection: 'row', gap: '1px', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
 
                                     <div style={{ flexGrow: 1, marginRight: '20px' }}>
-                                        <textarea autocomplete="off" className="task-textarea-field" type="text" value={description} placeholder="Description" onChange={(e) => setDescription(e.target.value)} />
+                                        <textarea autoComplete="off" className="task-textarea-field" type="text" value={description} placeholder="Description" onChange={(e) => setDescription(e.target.value)} />
                                     </div>
 
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginRight: '20px', color: '#838383' }}>

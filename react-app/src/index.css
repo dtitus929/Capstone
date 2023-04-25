@@ -159,7 +159,7 @@ button:hover {
     border-bottom-right-radius: 10px;
     margin-bottom: 10px;
     margin-right: 10px;
-    padding: 14px;
+    padding: 30px;
 }
 
 #layout-content-right-taskbar {
@@ -179,6 +179,25 @@ button:hover {
     display: none;
 }
 
+#list-name {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+#task-num-holder {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+
+.task-num {
+    padding: 12px;
+    background-color: #dbe8f6;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
 
 /* %%%%%%%% Task Card %%%%%%%% */
 
@@ -237,7 +256,7 @@ button:hover {
     border-right: 1px solid #838383;
     border-left: 1px solid #838383;
     border-bottom: 1px solid #838383;
-    background-color: #f8f8f8;
+    background-color: #f7f7f7;
     margin: 0px 10px;
     display: flex;
     flex-direction: row;
@@ -366,11 +385,26 @@ button:hover {
         border-top-right-radius: 10px;
         border-top-left-radius: 10px;
         margin-bottom: 0px;
+        padding: 10px 20px;
     }
 
     #layout-content-right-taskbar {
         margin-bottom: 0px;
         height: calc(100vh - 50px);
+    }
+
+    #list-name {
+        margin-bottom: 5px;
+    }
+
+    .task-num {
+        padding: 4px 8px;
+        background-color: #dbe8f6;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 7px;
     }
 
 

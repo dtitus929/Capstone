@@ -68,7 +68,7 @@ function ListCard(props) {
     return (
         <>
 
-            <Link style={id == listId ? { color: '#0060bf', fontWeight: 'bold' } : { color: '#000000' }} className="list-link" title={name} to={`/${id}`}>
+            <Link onClick={() => { window.showHideTaskbar('hide') }} style={id == listId ? { color: '#0060bf', fontWeight: 'bold' } : { color: '#000000' }} className="list-link" title={name} to={`/${id}`}>
                 {name}
             </Link>
 

@@ -25,6 +25,31 @@ button:hover {
     height: 100%;
 }
 
+/* %%%%%%%%%% SCROLLBAR STYLING %%%%%%%%%%% */
+
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #9d9d9d white;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 18px;
+}
+
+*::-webkit-scrollbar-track {
+    background: white;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #c5c5c5;
+    border-radius: 20px;
+    border: 6px solid #ffffff;
+}
+
+/* ================= */
+
 /* %%%%%%%%% Login/Signup + Profile Button/Popup   %%%%%%%%%%%% */
 
 #layout-top {
@@ -177,6 +202,7 @@ button:hover {
     height: calc(100vh - 60px);
     border-left: 1px solid #bdbdbd;
     display: none;
+    overflow: hidden;
 }
 
 #list-name {
@@ -298,6 +324,40 @@ button:hover {
     background-color: #006bd6;
 }
 
+
+/* %%%%%%%% Edit Task %%%%%%%% */
+
+.taskform-shell {
+    overflow-y: auto;
+    height: 100%;
+}
+
+.taskform-holder {
+    overflow: hidden;
+    margin-bottom: 80px;
+}
+
+.edittask-input-field {
+    padding: 6px;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+.deletetask-button {
+    background-color: #bf0000;
+    color: #ffffff;
+    /* margin: 4px 0px; */
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 4px 4px;
+    border-radius: 20px;
+}
+
+.deletetask-button:hover {
+    background-color: #e80000;
+}
+
 /* %%%%%%%% List Card %%%%%%%% */
 
 
@@ -350,7 +410,7 @@ button:hover {
     border: 1px solid #adadad;
     border-radius: 8px;
     box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px 10px 20px 10px;
+    padding: 10px 10px 10px 10px;
     position: absolute;
     transform: translateX(395px);
     top: 165px;
@@ -366,6 +426,22 @@ button:hover {
 #copyright-area {
     font-size: 11px;
     color: #828282
+}
+
+.copyright-button {
+    background-color: inherit;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    color: #828282;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.copyright-button:hover {
+    /* background-color: #f3f3f3; */
+    color: #0060bf;
 }
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%% */

@@ -21,6 +21,8 @@ function ListCard(props) {
     const openMenu = () => {
         if (showMenu) return;
         setShowMenu(true);
+        setListName(name);
+        setErrors([]);
     };
 
     useEffect(() => {
@@ -38,7 +40,10 @@ function ListCard(props) {
     }, [showMenu]);
 
     const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-    const closeMenu = () => setShowMenu(false);
+    const closeMenu = () => {
+        setShowMenu(false);
+        setErrors([]);
+    }
 
     const handleEditList = async (e) => {
         e.preventDefault();
@@ -71,6 +76,16 @@ function ListCard(props) {
         window.showHideTaskbar('hide')
     }
 
+    function handleConfirmation(action, id) {
+        if (action === 'show') {
+            document.getElementById(`initiate-delete-${id}`).style.display = 'none'
+            document.getElementById(`confirm-delete-${id}`).style.display = 'block'
+        } else {
+            document.getElementById(`initiate-delete-${id}`).style.display = 'block'
+            document.getElementById(`confirm-delete-${id}`).style.display = 'none'
+        }
+    }
+
     return (
         <>
 
@@ -85,27 +100,27 @@ function ListCard(props) {
             </div>
 
             <ul className={ulClassName} ref={ulRef}>
-                <div id={`editDeleteList-${id}`} className="edit-list-popup">
+                <div id={`editDeleteList-${id}`} className="edit-list-popup" style={{ paddingBottom: '10px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <div style={{
                             fontWeight: 'bold', color: '#0060bf'
-                        }}>Edit/Delete List</div>
+                        }}>Edit List</div>
                         <button className="close-popup" onClick={closeMenu}><i className="fas fa-times" /></button>
                     </div>
 
-                    <div className="form-div">
+                    <div className="form-div" style={{ margin: '5px 0px 0px 0px' }}>
 
                         {errors.length > 0 &&
-                            <div style={{ paddingTop: '20px', paddingLeft: '20px', color: 'red', display: 'block' }}>
-                                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                            <div style={{ paddingBottom: '8px', paddingLeft: '10px', color: 'red', display: 'block', fontSize: '14px' }}>
+                                {errors.map((error, idx) => <li key={idx}>{error.substr(7)}</li>)}
                             </div >
                         }
 
                         <form onSubmit={handleEditList}>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
 
-                                <input className="popup-input-field" type="text" value={list_name} placeholder={list_name} onChange={(e) => setListName(e.target.value)} required />
-                                <button className="popup-input-submit" type="submit">Change Name</button>
+                                <input style={{ margin: '0px 0px 0px 0px' }} className="edittask-input-field" type="text" value={list_name} placeholder={list_name} onChange={(e) => setListName(e.target.value)} required />
+                                <button style={{ margin: '0px 50px 10px 50px', fontSize: '12px', padding: '4px 0px' }} className="logout-button" type="submit">Change Name</button>
 
                             </div>
                         </form>
@@ -113,7 +128,17 @@ function ListCard(props) {
                         <form onSubmit={handleDeleteList}>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
 
-                                <button className="popup-input-submit" type="submit">Delete List</button>
+                                <div id={`initiate-delete-${id}`} style={{ margin: '0px 70px 0px 70px', textAlign: 'center', cursor: 'pointer', fontSize: '12px', padding: '4px 0px' }} className="deletetask-button" type="submit" onClick={() => { handleConfirmation('show', id) }}>Delete List</div>
+
+                                <div id={`confirm-delete-${id}`} style={{ display: 'none' }}>
+                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
+                                        <div style={{ fontSize: '12px' }}>Are you sure you want to delete this list?</div>
+                                        <div style={{ display: 'flex', textAlign: 'center', marginTop: '10px' }}>
+                                            <div style={{ margin: '0px 5px 0px 0px', cursor: 'pointer', fontSize: '11px', padding: '3px 10px 2px 10px' }} className="logout-button" onClick={() => { handleConfirmation('cancel', id) }}>NO</div>
+                                            <button style={{ margin: '0px 0px 0px 5px', fontSize: '11px', padding: '3px 10px 2px 10px' }} className="deletetask-button" type="submit">YES</button>
+                                        </div>
+                                    </div>
+                                </div>
 
                             </div>
                         </form>

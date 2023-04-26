@@ -57,6 +57,7 @@ function Tasks(props) {
             document.getElementById('expanded-task-form').style.display = 'block';
         } else {
             document.getElementById('expanded-task-form').style.display = 'none';
+            setErrors([]);
         }
     }, [name]);
 
@@ -73,7 +74,7 @@ function Tasks(props) {
 
                 {errors.length > 0 &&
                     <div style={{ paddingTop: '20px', paddingLeft: '20px', color: 'red', display: 'block' }}>
-                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                        {errors.map((error, idx) => <li key={idx}>{error.substr(7)}</li>)}
                     </div >
                 }
 
@@ -92,7 +93,7 @@ function Tasks(props) {
                                 <div style={{ display: 'flex', flexDirection: 'row', gap: '1px', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
 
                                     <div style={{ flexGrow: 1, marginRight: '20px' }}>
-                                        <textarea autoComplete="off" className="task-textarea-field" type="text" value={description} placeholder="Description" onChange={(e) => setDescription(e.target.value)} />
+                                        <textarea autoComplete="off" className="task-textarea-field" type="text" value={description} placeholder="Notes" onChange={(e) => setDescription(e.target.value)} />
                                     </div>
 
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginRight: '20px', color: '#838383' }}>

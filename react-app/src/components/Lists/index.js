@@ -142,19 +142,19 @@ function Lists(props) {
               <button className="close-popup" onClick={closeMenu}><i className="fas fa-times" /></button>
             </div>
 
-            <div className="form-div">
+            <div className="form-div" style={{ margin: '5px 0px 0px 0px' }}>
 
               {errors.length > 0 &&
-                <div style={{ paddingTop: '20px', paddingLeft: '20px', color: 'red', display: 'block' }}>
-                  {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                <div style={{ paddingBottom: '8px', paddingLeft: '10px', color: 'red', display: 'block', fontSize: '14px' }}>
+                  {errors.map((error, idx) => <li key={idx}>{error.substr(7)}</li>)}
                 </div >
               }
 
               <form onSubmit={addList}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
 
-                  <input className="popup-input-field" type="text" value={name} placeholder="List Name" onChange={(e) => setName(e.target.value)} required />
-                  <button className="popup-input-submit" type="submit">Add List</button>
+                  <input style={{ margin: '0px 0px 0px 0px' }} className="edittask-input-field" type="text" value={name} placeholder="List Name" onChange={(e) => setName(e.target.value)} required />
+                  <button style={{ margin: '0px 50px 10px 50px', fontSize: '12px', padding: '4px 0px' }} className="logout-button" type="submit">Add List</button>
 
                 </div>
               </form>

@@ -44,7 +44,7 @@ def post_new_list():
     if form.validate_on_submit():
         list = List(
             name=form.data['name'],
-            type="standard",
+            type=form.data['type'],
             user_id=current_user.id
         )
         db.session.add(list)

@@ -56,9 +56,13 @@ function Main() {
 
     const thisList = allLists[listId];
 
-    if (listId === "home" && listInbox.length) {
-        history.push(`/${listInbox[0].id}`);
-    }
+    useEffect(() => {
+        if (listId === "home" && listInbox.length) {
+            history.push(`/${listInbox[0].id}`);
+        }
+    }, [listInbox]);
+
+
 
     useEffect(() => {
         if (listId !== 'home') {

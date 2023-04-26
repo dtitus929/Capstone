@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 function EditTaskCard() {
 
-
+    const { listId } = useParams();
 
     const dispatch = useDispatch();
 
@@ -26,6 +26,7 @@ function EditTaskCard() {
     let [completed, setCompleted] = useState(task?.completed);
     let [priority, setPriority] = useState(task?.priority);
     let [isChecked, setIsChecked] = useState(task?.completed);
+    let [errors, setErrors] = useState([]);
 
 
     useEffect(() => {
@@ -41,64 +42,6 @@ function EditTaskCard() {
     }, [task?.id, task?.list_id, task?.name, task?.description, task?.due_date, task?.completed, task?.priority]);
 
 
-    // let task;
-
-    // if (taskIn) {
-    //     console.log(taskIn.length)
-    //     if (taskIn.length) {
-    //         task = taskIn[0]
-    //         console.log("taskName:", taskIn[0].name)
-    //     }
-
-    // }
-
-    // console.log('THIS TASK NOW:', task);
-
-    // let id;
-    // let list_id;
-    // let name;
-    // let description;
-    // let due_date;
-    // let completed;
-    // let priority;
-
-
-
-
-    // useEffect(() => {
-    //     if (taskIn.length) {
-    //         setId(task.id)
-    //         setListId(task.list_id)
-    //         setName(task.name)
-    //     }
-    // }, []);
-
-
-
-    // const [id, setId] = useState('');
-    // const [list_id, setListId] = useState(null);
-    // const [name, setName] = useState('');
-    // const [description, setDescription] = useState('');
-    // const [due_date, setDueDate] = useState('');
-    // const [completed, setCompleted] = useState(null);
-    // const [priority, setPriority] = useState(null);
-
-    // useEffect(() => {
-    //     // setId(id || task.id)
-    //     setListId(list_id || task.list_id)
-    //     setName(name || task.name)
-    //     setDescription(description || task.description)
-    //     setDueDate(due_date || task.due_date)
-    //     setCompleted(completed || task.completed)
-    //     setPriority(priority || task.priority)
-    // }, [id]);
-
-    // let [isChecked, setIsChecked] = useState(false);
-
-    let [errors, setErrors] = useState([]);
-
-
-    const { listId } = useParams();
 
     // =========
 
@@ -115,7 +58,7 @@ function EditTaskCard() {
     function handleCloseRight() {
 
         window.showHideTaskbar('hide')
-        // console.log('THEID', id)
+
     }
 
     // =========
@@ -134,6 +77,9 @@ function EditTaskCard() {
             setErrors(data);
             return
         }
+
+        dispatch(taskActions.getListTasksThunk(listId));
+
     };
 
     const handleDeleteTask = async (e) => {
@@ -149,6 +95,9 @@ function EditTaskCard() {
 
         window.showHideTaskbar('hide')
     };
+
+    useSelector((state) => state.tasks.listTasks);
+
 
     // =========
 
@@ -189,13 +138,9 @@ function EditTaskCard() {
 
 
                     <select value={priority} onChange={(e) => setPriority(e.target.value)}>
-
-
                         <option key={1} value={1}>High</option>
                         <option key={2} value={2}>Medium</option>
                         <option key={3} value={3}>Low</option>
-
-
                     </select>
 
 
@@ -212,19 +157,6 @@ function EditTaskCard() {
 
                 </div>
             </form>
-
-            {/* <div>{id}</div>
-            <div>{name}</div>
-            <div>{description}</div>
-            <div>{due_date}</div>
-            <div>{priority}</div>
-            <div>{`${completed}`}</div>
-            <div>{list_id}</div> */}
-
-
-
-
-
 
 
         </>

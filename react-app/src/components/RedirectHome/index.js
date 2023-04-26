@@ -1,11 +1,15 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
 
 function RedirectHome() {
 
     const history = useHistory();
 
-    history.push("/home");
+    useEffect(() => {
+        history.push("/home");
+    }, []);
+
 
     return (
 

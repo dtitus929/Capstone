@@ -25,15 +25,8 @@ function EditTaskCard() {
     let [due_date, setDueDate] = useState(task?.due_date);
     let [completed, setCompleted] = useState(task?.completed);
     let [priority, setPriority] = useState(task?.priority);
+    let [isChecked, setIsChecked] = useState(task?.completed);
 
-    // let [id, setId] = useState(task?.id);
-    // let [list_id, setListId] = useState(task?.list_id);
-    // let [name, setName] = useState(task?.name);
-    // let [name, setName] = useState(task?.name);
-
-    // console.log(id);
-    // console.log(list_id);
-    // console.log('Da Name', name);
 
     useEffect(() => {
         setId(task?.id)
@@ -43,6 +36,8 @@ function EditTaskCard() {
         setDueDate(task?.due_date)
         setCompleted(task?.completed)
         setPriority(task?.priority)
+        setIsChecked(task?.completed)
+        setErrors([]);
     }, [task?.id, task?.list_id, task?.name, task?.description, task?.due_date, task?.completed, task?.priority]);
 
 
@@ -126,8 +121,8 @@ function EditTaskCard() {
     // =========
 
     const handleCompleted = (e) => {
-        // setIsChecked(!isChecked);
-        // setCompleted(!isChecked)
+        setIsChecked(!isChecked);
+        setCompleted(!isChecked);
     };
 
 
@@ -168,6 +163,12 @@ function EditTaskCard() {
             <form onSubmit={handleEditTask}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
 
+                    {errors.length > 0 &&
+                        <div style={{ paddingTop: '20px', paddingLeft: '20px', color: 'red', display: 'block', fontSize: '14px' }}>
+                            {errors.map((error, idx) => <li key={idx}>{error.substr(7)}</li>)}
+                        </div >
+                    }
+
                     <input className="popup-input-field" type="text" value={name} onChange={(e) => setName(e.target.value)} required />
                     <textarea className="popup-input-field" type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
                     <input className="popup-input-field" type="date" value={due_date} onChange={(e) => setDueDate(e.target.value)} />
@@ -183,7 +184,7 @@ function EditTaskCard() {
 
 
                     {/* <input className="popup-input-field" type="checkbox" checked={completed !== null ? completed : thisTask[0].completed} value={completed ? completed : thisTask[0].completed} onChange={(e) => setCompleted(e.target.value)} /> */}
-                    <input className="popup-input-field" type="checkbox" checked={completed} onChange={(e) => handleCompleted(e.target.value)} />
+                    <input className="popup-input-field" type="checkbox" checked={isChecked} onChange={(e) => handleCompleted(e.target.value)} />
 
 
 

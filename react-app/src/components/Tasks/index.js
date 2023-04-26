@@ -57,6 +57,7 @@ function Tasks(props) {
             document.getElementById('expanded-task-form').style.display = 'block';
         } else {
             document.getElementById('expanded-task-form').style.display = 'none';
+            setErrors([]);
         }
     }, [name]);
 
@@ -73,7 +74,7 @@ function Tasks(props) {
 
                 {errors.length > 0 &&
                     <div style={{ paddingTop: '20px', paddingLeft: '20px', color: 'red', display: 'block' }}>
-                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                        {errors.map((error, idx) => <li key={idx}>{error.substr(7)}</li>)}
                     </div >
                 }
 

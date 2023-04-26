@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import signinupLogo from './rem-eggs-login-logo.svg'
 import './login.css';
+import * as listActions from '../../store/lists'
 
 function LoginSignupPage() {
     const dispatch = useDispatch();
@@ -79,6 +80,9 @@ function LoginSignupPage() {
             setErrors(['Password does not match confirmation password.']);
             return
         }
+
+        await dispatch(listActions.addChannelThunk('Inbox', 'inbox'))
+        await dispatch(listActions.addChannelThunk('Trash', 'trash'))
         history.push("/home");
     };
 

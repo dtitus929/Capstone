@@ -6,6 +6,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import LoginSignupPage from './components/LoginSignupPage'
 import Main from './components/Main'
+import RedirectHome from "./components/RedirectHome";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,9 @@ function App() {
               <Main />
             </Route>
           </Switch >
+          <Route path="/">
+            <RedirectHome />
+          </Route>
 
         </>
       )

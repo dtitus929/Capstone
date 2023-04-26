@@ -6,7 +6,9 @@ import ListCard from "../ListCard";
 import { useParams, useHistory } from "react-router-dom";
 
 
-function Lists() {
+function Lists(props) {
+
+  let { setSelectedTask } = props;
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -54,6 +56,7 @@ function Lists() {
       return
     } else {
       closeMenu();
+      setSelectedTask('')
       window.showHideTaskbar('hide')
       history.push(`/${data.id}`);
     }
@@ -91,7 +94,7 @@ function Lists() {
           {type === 'inbox' && (
             <>
 
-              <ListCard id={id} name={name} type={type} listId={listId} />
+              <ListCard setSelectedTask={setSelectedTask} id={id} name={name} type={type} listId={listId} />
 
             </>
           )}
@@ -112,7 +115,7 @@ function Lists() {
           {type === 'trash' && (
             <>
 
-              <ListCard id={id} name={name} type={type} listId={listId} />
+              <ListCard setSelectedTask={setSelectedTask} id={id} name={name} type={type} listId={listId} />
 
             </>
           )}
@@ -172,7 +175,7 @@ function Lists() {
           {type === 'standard' && (
             <>
 
-              <ListCard id={id} name={name} type={type} listId={listId} />
+              <ListCard setSelectedTask={setSelectedTask} id={id} name={name} type={type} listId={listId} />
 
             </>
           )}

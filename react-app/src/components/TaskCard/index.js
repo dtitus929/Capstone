@@ -37,8 +37,18 @@ function TaskCard(props) {
                 <div key={id} className="task-card" onClick={() => { handleCardClick(id) }}>
                     <div className="taskcard-content">
                         <div className={`priority-${priority}`} style={{ flexGrow: 1, alignSelf: 'stretch' }}></div>
-                        <div style={{ width: '100%' }}>{name}</div>
-                        <div style={{ whiteSpace: 'nowrap', color: '#9b9b9b', margin: '0px 8px 0px 10px', width: '45px' }}>{adjustTime(due_date)}</div>
+                        <div style={completed ? { width: '100%', textDecoration: 'line-through', color: '#9c9c9c' } : { width: '100%' }}>{name}</div>
+
+                        {completed ? (
+                            <>
+                                <div style={{ whiteSpace: 'nowrap', color: '#9b9b9b', margin: '0px 8px 0px 10px', width: '45px', textAlign: 'right', fontSize: '16px' }}><i className="fa fa-check" /></div>
+                            </>
+                        ) : (
+                            <>
+                                <div style={{ whiteSpace: 'nowrap', color: '#9b9b9b', margin: '0px 8px 0px 10px', width: '45px' }}>{adjustTime(due_date)}</div>
+                            </>
+                        )}
+
                         {/* <div>{`${completed}`}</div> */}
                     </div>
 

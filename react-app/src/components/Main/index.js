@@ -18,7 +18,6 @@ function Main() {
 
     const [selectedTask, setSelectedTask] = useState("");
 
-    // console.log(selectedTask);
 
     const dispatch = useDispatch();
 
@@ -70,6 +69,15 @@ function Main() {
     const allTasks = useSelector((state) => state.tasks.listTasks);
     const arrTasks = Object.values(allTasks);
 
+    const currentTask = arrTasks.filter(function (el) {
+        return el.id === selectedTask;
+    });
+
+    useEffect(() => {
+        dispatch(taskActions.currentTaskThunk(currentTask));
+
+    }, [dispatch, currentTask]);
+
     const completedTasks = arrTasks.filter(function (el) {
         return el.completed === true;
     });
@@ -89,7 +97,7 @@ function Main() {
             <div id="layout-leftnav">
                 <div style={{ margin: '0px 20px 16px 10px' }}><img src={`${logo}`} alt='' /></div>
                 <div className="lists-leftside">
-                    <Lists />
+                    <Lists setSelectedTask={setSelectedTask} />
                 </div>
             </div>
 
@@ -119,7 +127,7 @@ function Main() {
 
                 <div id="layout-content-right-taskbar">
 
-                    <EditTaskCard id={selectedTask} />
+                    <EditTaskCard />
 
                 </div>
 

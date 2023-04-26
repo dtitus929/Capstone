@@ -9,9 +9,9 @@ function ListCard(props) {
 
 
     const dispatch = useDispatch();
-    // const history = useHistory();
+    const history = useHistory();
 
-    const { id, name, type, listId } = props;
+    const { id, name, type, listId, setSelectedTask } = props;
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
 
@@ -58,6 +58,7 @@ function ListCard(props) {
 
         const data = await dispatch(listActions.deleteListThunk(id));
         closeMenu();
+        history.push("/home");
 
         if (data) {
             setErrors(data);
@@ -65,10 +66,15 @@ function ListCard(props) {
         }
     };
 
+    function handleCloseWindow() {
+        setSelectedTask('')
+        window.showHideTaskbar('hide')
+    }
+
     return (
         <>
 
-            <Link onClick={() => { window.showHideTaskbar('hide') }} style={id == listId ? { color: '#0060bf', fontWeight: 'bold' } : { color: '#000000' }} className="list-link" title={name} to={`/${id}`}>
+            <Link onClick={() => { handleCloseWindow() }} style={id == listId ? { color: '#0060bf', fontWeight: 'bold' } : { color: '#000000' }} className="list-link" title={name} to={`/${id}`}>
                 {name}
             </Link>
 

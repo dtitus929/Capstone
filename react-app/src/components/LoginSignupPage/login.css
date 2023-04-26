@@ -77,8 +77,8 @@
 }
 
 .footer-link {
-    font-size: 13px;
-    color: #555555;
+    font-size: 11px;
+    color: #828282;
 }
 
 
@@ -87,7 +87,7 @@
     border: none;
     border-radius: 4px;
     font-size: 15px;
-    color: #555555;
+    color: #828282;
     cursor: pointer;
     text-decoration: none;
 }

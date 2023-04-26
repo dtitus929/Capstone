@@ -93,7 +93,7 @@ function Tasks(props) {
                                 <div style={{ display: 'flex', flexDirection: 'row', gap: '1px', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
 
                                     <div style={{ flexGrow: 1, marginRight: '20px' }}>
-                                        <textarea autoComplete="off" className="task-textarea-field" type="text" value={description} placeholder="Description" onChange={(e) => setDescription(e.target.value)} />
+                                        <textarea autoComplete="off" className="task-textarea-field" type="text" value={description} placeholder="Notes" onChange={(e) => setDescription(e.target.value)} />
                                     </div>
 
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginRight: '20px', color: '#838383' }}>

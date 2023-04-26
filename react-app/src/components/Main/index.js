@@ -174,7 +174,60 @@ function Main() {
 
                         </div>
 
-                        <div id="copyright-area">© 2023 Remember The Eggs</div>
+                        <div id="copyright-area">
+
+                            {/* FOOTER  */}
+
+                            <div>© {new Date().getFullYear()} Remember The Eggs</div>
+
+
+                            <div style={{ display: 'flex', alignItems: 'center', marginTop: '5px' }}>
+
+                                <div>
+                                    <span>Dave Titus:</span>
+                                </div>
+
+                                <div className="footer-link">
+                                    <span>
+                                        <a className="footer-button" href="http://creativegozone.com/" target="_blank" rel="noreferrer">
+                                            <button className="copyright-button">
+                                                <i className="fas fa-eye" style={{ fontSize: '14px' }}></i>
+                                            </button>
+                                        </a>
+                                    </span>
+                                </div>
+
+                                <div className="footer-link">
+                                    <span>
+                                        <a className="footer-button" href="https://github.com/dtitus929/Capstone" target="_blank" rel="noreferrer">
+                                            <button className="copyright-button">
+                                                <i className="fa fa-github" style={{ fontSize: '14px' }}></i>
+                                            </button>
+                                        </a>
+                                    </span>
+                                </div>
+
+                                <div className="footer-link">
+                                    <span>
+                                        <a className="footer-button" href="https://www.linkedin.com/in/djtitus/" target="_blank" rel="noreferrer">
+                                            <button className="copyright-button">
+                                                <i className="fa fa-linkedin-square" style={{ fontSize: '14px' }}></i>
+                                            </button>
+
+
+                                        </a>
+                                    </span>
+                                </div>
+
+                            </div >
+
+
+
+
+
+
+
+                        </div>
 
 
                     </div>

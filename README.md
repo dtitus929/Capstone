@@ -1,6 +1,6 @@
 # Remember the Eggs
 
-This is a capstone full stack clone project developed while a student at App Academy.  It is a clone of the popular to-do list app called Remember the Milk.  The back-end utilizes a Flask server framework with a SQLAlchemy ORM. The front-end is React and makes use of Redux as a data store. No styling frameworks were used... just standard CSS.
+This is a full stack project developed while a student at App Academy.  It is a clone of the popular to-do list app called Remember the Milk.  The back-end utilizes a Flask server framework with a SQLAlchemy ORM. The front-end is React and makes use of Redux as a data store. No styling frameworks were used... just standard CSS.
 
 Available for view at: [Remember the Eggs](https://davet-capstone.onrender.com/)
 

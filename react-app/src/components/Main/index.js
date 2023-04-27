@@ -144,10 +144,10 @@ function Main() {
 
                         <div id="list-nums-holder">
                             {thisList && (
-                                <div id="list-name">
+                                <div id="list-name" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
 
-                                    {thisList.name}
-                                    <span style={{ fontSize: '14px', marginLeft: '30px', color: 'rgb(0, 0, 0, .25)' }}>{arrTasks.length} total tasks</span>
+                                    <div style={{ marginRight: '20px', width: '240px', overflow: 'hidden', textOverflow: 'ellipsis' }}>{thisList.name}</div>
+                                    <div style={{ marginRight: '20px', fontSize: '14px', color: 'rgb(0, 0, 0, .25)', whiteSpace: 'nowrap' }}>{arrTasks.length} total tasks</div>
 
                                 </div>
                             )}

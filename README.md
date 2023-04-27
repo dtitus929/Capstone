@@ -29,7 +29,7 @@ Available for view at: [Remember the Eggs](https://davet-capstone.onrender.com/)
 
 ## Setup Instructions
 
-The structure for this app includes a root Pipfile for remotely deploying the application as a back-end Flask server.  The react-app folder contains a package.json file for setting up the front-end server.
+The structure for this app includes a root Pipfile for installing dependancies for the back-end Flask server.  The react-app folder contains a package.json file for setting up dependancies the front-end server.
 
 #### Launching the Full Application Locally
 

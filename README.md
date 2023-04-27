@@ -2,7 +2,7 @@
 
 This is a capstone project developed while a student at App Academy.  It is a clone of the popular to-do list app called Remember the Milk.
 
-Available for view at: (https://davet-capstone.onrender.com/)
+Available for view at: [Remember the Eggs](https://davet-capstone.onrender.com/)
 
 ## Technologies Used
 

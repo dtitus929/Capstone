@@ -131,7 +131,7 @@ function Main() {
 
                 <div id="layout-content-right-taskbar">
 
-                    <EditTaskCard />
+                    <EditTaskCard listTrash={listTrash} />
 
                 </div>
 

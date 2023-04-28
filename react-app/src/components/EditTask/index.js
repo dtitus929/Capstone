@@ -4,7 +4,11 @@ import * as taskActions from '../../store/tasks';
 import { useParams } from "react-router-dom";
 
 
-function EditTaskCard() {
+function EditTaskCard(props) {
+
+    const { listTrash } = props;
+    // console.log('trash:', listTrash)
+    // console.log('trashID:', listTrash[0]?.id)
 
     const { listId } = useParams();
 
@@ -24,6 +28,7 @@ function EditTaskCard() {
     let [completed, setCompleted] = useState(task?.completed);
     let [priority, setPriority] = useState(task?.priority);
     let [isChecked, setIsChecked] = useState(task?.completed);
+    let [originalList, setOriginalList] = useState(null);
     let [errors, setErrors] = useState([]);
 
 
@@ -38,6 +43,9 @@ function EditTaskCard() {
         setIsChecked(task?.completed)
         setErrors([]);
         handleConfirmation('cancel')
+        if (originalList === null) {
+            setOriginalList()
+        }
     }, [task?.id, task?.list_id, task?.name, task?.description, task?.due_date, task?.completed, task?.priority]);
 
 
@@ -81,6 +89,20 @@ function EditTaskCard() {
 
     };
 
+    const handleTrashTask = async (e) => {
+        e.preventDefault();
+
+        const data = await dispatch(taskActions.editTaskThunk(id, name, listTrash[0]?.id, description, due_date, completed, priority));
+        if (data) {
+            setErrors(data);
+            return
+        }
+
+        dispatch(taskActions.getListTasksThunk(listId));
+        window.showHideTaskbar('hide')
+
+    };
+
     const handleDeleteTask = async (e) => {
         e.preventDefault();
 
@@ -96,6 +118,8 @@ function EditTaskCard() {
     };
 
     useSelector((state) => state.tasks.listTasks);
+
+
 
     function handleConfirmation(action) {
         if (action === 'show') {
@@ -155,7 +179,7 @@ function EditTaskCard() {
                                 <select className="edittask-input-field" value={list_id} onChange={(e) => setListId(e.target.value)}>
                                     {arrLists?.map(({ id, name }) => (
 
-                                        <option key={id} value={id}>{name}</option>
+                                        <option key={id} value={id} style={{ display: name !== 'Trash' ? 'block' : 'none' }} >{name}</option>
 
                                     ))
                                     }
@@ -206,22 +230,32 @@ function EditTaskCard() {
 
                             <div style={{ height: '1px', backgroundColor: '#cccccc', margin: '10px 0px 10px 0px' }}></div>
 
-                            <button style={{ margin: '10px 80px 20px 80px' }} className="logout-button" type="submit">Change Task</button>
+                            <button style={{ margin: '10px 100px 20px 100px', padding: '5px 20px 5px 10px' }} className="logout-button" type="submit"><i className="far fa-edit" style={{ fontSize: '13px' }} />&nbsp;&nbsp;Change Task</button>
 
                         </div>
                     </form >
 
-                    <form onSubmit={handleDeleteTask} style={{ padding: '0px 20px' }} >
+
+                    <form onSubmit={listId && Number(listId) === Number(listTrash[0]?.id) ? handleDeleteTask : handleTrashTask} style={{ padding: '0px 20px' }} >
+                        {/* Delete Me {listId} : {listTrash[0]?.id} */}
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
 
-                            <div id="initiate-delete" style={{ margin: '0px 120px 0px 120px', textAlign: 'center', cursor: 'pointer' }} className="deletetask-button" onClick={() => { handleConfirmation('show') }}>Delete Task</div>
+                            {listId && Number(listId) === Number(listTrash[0]?.id) ? (
+                                <div id="initiate-delete" style={{ margin: '0px 115px 0px 115px', textAlign: 'center', cursor: 'pointer', padding: '5px 15px 5px 10px' }} className="deletetask-button-init" onClick={() => { handleConfirmation('show') }}><i className="far fa-times-circle" style={{ fontSize: '13px' }} />&nbsp;&nbsp;Delete Task</div>
+                            ) : (
+                                <button id="initiate-delete" style={{ margin: '0px 110px 0px 110px', textAlign: 'center', cursor: 'pointer', padding: '5px 15px 5px 10px' }} className="trash-button" type="submit"><i className="far fa-trash-alt" style={{ fontSize: '13px' }} />&nbsp; &nbsp; Move to Trash</button>
+                            )
+                            }
+
+
+
 
                             <div id="confirm-delete" style={{ display: 'none' }}>
                                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
-                                    <div>Are you sure you want to delete this task?</div>
+                                    <div>Permanently delete this task?</div>
                                     <div style={{ display: 'flex', textAlign: 'center', marginTop: '10px' }}>
-                                        <div style={{ margin: '0px 5px 0px 0px', cursor: 'pointer' }} className="logout-button" onClick={() => { handleConfirmation('cancel') }}>NO</div>
-                                        <button style={{ margin: '0px 0px 0px 5px', padding: '0px 20px' }} className="deletetask-button" type="submit">YES</button>
+                                        <div style={{ margin: '0px 5px 0px 0px', cursor: 'pointer', fontSize: '13px', padding: '4px 13px' }} className="logout-button" onClick={() => { handleConfirmation('cancel') }}>NO</div>
+                                        <button style={{ margin: '0px 0px 0px 5px', fontSize: '13px', padding: '0px 14px' }} className="deletetask-button" type="submit">YES</button>
                                     </div>
                                 </div>
                             </div>
@@ -229,6 +263,13 @@ function EditTaskCard() {
 
                         </div>
                     </form >
+
+
+
+
+
+
+
 
                 </div>
             </div>

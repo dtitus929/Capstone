@@ -358,6 +358,37 @@ button:hover {
     background-color: #e80000;
 }
 
+.deletetask-button-init {
+    background-color: #ffffff;
+    color: #e80000;
+    /* margin: 4px 0px; */
+    border: 1px solid rgb(232, 0, 0, .7);
+    font-size: 13px;
+    font-weight: 400;
+    padding: 4px 4px;
+    border-radius: 20px;
+}
+
+.deletetask-button-init:hover {
+    background-color: #fff3f3;
+}
+
+.trash-button {
+    background-color: #ffffff;
+    color: #868686;
+    /* margin: 4px 0px; */
+    border: 1px solid #868686;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 4px 4px;
+    border-radius: 20px;
+}
+
+.trash-button:hover {
+    background-color: #f6f6f6;
+
+}
+
 /* %%%%%%%% List Card %%%%%%%% */
 
 

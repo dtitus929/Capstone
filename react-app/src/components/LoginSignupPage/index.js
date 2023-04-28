@@ -167,8 +167,8 @@ function LoginSignupPage() {
                     <div className="form-div" style={{ paddingBottom: '24px' }}>
 
                         {errors.length > 0 &&
-                            <div style={{ paddingTop: '20px', paddingLeft: '20px', color: 'red', display: 'block' }}>
-                                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                            <div style={{ paddingTop: '20px', paddingLeft: '10px', color: 'red', display: 'block' }}>
+                                {errors.map((error, idx) => <li key={idx}>{error.slice(error.indexOf(': ') + 1)}</li>)}
                             </div >
                         }
 

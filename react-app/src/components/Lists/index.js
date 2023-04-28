@@ -154,7 +154,7 @@ function Lists(props) {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
 
                   <input style={{ margin: '0px 0px 0px 0px' }} className="edittask-input-field" type="text" value={name} placeholder="List Name" onChange={(e) => setName(e.target.value)} required />
-                  <button style={{ margin: '0px 50px 10px 50px', fontSize: '12px', padding: '4px 0px' }} className="logout-button" type="submit">Add List</button>
+                  <button style={{ margin: '0px 70px 10px 70px', fontSize: '12px', padding: '4px 10px 4px 3px' }} className="logout-button" type="submit"><i className="far fa-plus-square" style={{ fontSize: '12px' }} />&nbsp; &nbsp;Add List</button>
 
                 </div>
               </form>

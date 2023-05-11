@@ -35,7 +35,7 @@ The structure for this app includes a root Pipfile for installing dependancies f
 #### Launching the Full Application Locally
 
 1. Download the application as a zip file from GitHub.
-2. From within the root folder install the dependent pip packages: `pipenv install`
+2. From within the app folder install the dependent pip packages: `pipenv install`
 3. Enter the pipenv shell environment: `pipenv shell`
 4. Migrate the SQLAlchemy database schema: `flask db upgrade`
 5. Generate SQLAlchemy seed data for testing: `flask seed all`

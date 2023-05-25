@@ -19,6 +19,6 @@ class Fave(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'url': self.type,
+            'url': self.url,
             'user_id': self.user_id
         }

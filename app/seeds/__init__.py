@@ -2,6 +2,7 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .lists import seed_lists, undo_lists
 from .tasks import seed_tasks, undo_tasks
+from .faves import seed_faves, undo_faves
 
 from app.models.db import db, environment, SCHEMA
 
@@ -9,8 +10,9 @@ from app.models.db import db, environment, SCHEMA
 # So we can type `flask seed --help`
 seed_commands = AppGroup('seed')
 
-
 # Creates the `flask seed all` command
+
+
 @seed_commands.command('all')
 def seed():
     if environment == 'production':
@@ -21,9 +23,11 @@ def seed():
         undo_tasks()
         undo_lists()
         undo_users()
+        undo_faves()
     seed_users()
     seed_lists()
     seed_tasks()
+    seed_faves()
     # Add other seed functions here
 
 
@@ -33,4 +37,5 @@ def undo():
     undo_tasks()
     undo_lists()
     undo_users()
+    undo_faves()
     # Add other undo functions here

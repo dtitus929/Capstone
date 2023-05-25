@@ -76,6 +76,12 @@ function Lists(props) {
 
   const arrLists = Object.values(allLists);
 
+  const allLinks = [
+    { id: 1, name: 'Art', url: 'https://www.art.com/', user_id: '1' },
+    { id: 2, name: 'Google', url: 'https://www.google.com/', user_id: '1' },
+    { id: 3, name: 'DB Schema', url: 'https://dbdiagram.io/d/643dba9f6b31947051bfe073', user_id: '1' }
+  ]
+
 
 
 
@@ -126,7 +132,7 @@ function Lists(props) {
       ))
       }
 
-      {/* %%%%%%%%%%%%%%%%%% */}
+      {/* %%%%%%%%% LISTS %%%%%%%%% */}
 
 
       <div style={{ fontSize: '14px', margin: '16px 0px 0px 5px', display: 'flex', justifyContent: 'space-between', borderTop: '1px solid #bcd0eb', paddingTop: '10px' }}>
@@ -165,7 +171,7 @@ function Lists(props) {
         </ul>
       </div>
 
-      {/* %%%%%%%%%%%%%%%%%% */}
+      {/* %%%%%%%%% LISTS MAP %%%%%%%%% */}
 
       {arrLists?.map(({ id, name, type }) => (
 
@@ -179,6 +185,66 @@ function Lists(props) {
 
             </>
           )}
+
+        </div >
+
+
+      ))
+      }
+
+
+      {/* %%%%%%%% FAVORITE LINKS %%%%%%%%%% */}
+
+
+      <div style={{ fontSize: '14px', margin: '16px 0px 0px 5px', display: 'flex', justifyContent: 'space-between', borderTop: '1px solid #bcd0eb', paddingTop: '10px' }}>
+        <div><span style={{ fontSize: '6px', padding: '0px 3px 2px 0px' }}>&#9660;</span>Favorite Links</div>
+        <div><button onClick={openMenu} className="editlist-button" style={{ marginRight: '6px' }}><i className="far fa-plus-square" /></button></div>
+
+        <ul className={ulClassName} ref={ulRef}>
+          <div className="add-list-popup">
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <div style={{
+                fontWeight: 'bold', color: '#0060bf'
+              }}>Add New List</div>
+              <button className="close-popup" onClick={closeMenu}><i className="fas fa-times" /></button>
+            </div>
+
+            <div className="form-div" style={{ margin: '5px 0px 0px 0px' }}>
+
+              {errors.length > 0 &&
+                <div style={{ paddingBottom: '8px', paddingLeft: '10px', color: 'red', display: 'block', fontSize: '14px' }}>
+                  {errors.map((error, idx) => <li key={idx}>{error.substr(7)}</li>)}
+                </div >
+              }
+
+              <form onSubmit={addList}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+
+                  <input style={{ margin: '0px 0px 0px 0px' }} className="edittask-input-field" type="text" value={name} placeholder="List Name" onChange={(e) => setName(e.target.value)} required />
+                  <button style={{ margin: '0px 70px 10px 70px', fontSize: '12px', padding: '4px 10px 4px 3px' }} className="logout-button" type="submit"><i className="far fa-plus-square" style={{ fontSize: '12px' }} />&nbsp; &nbsp;Add List</button>
+
+                </div>
+              </form>
+
+            </div>
+
+          </div>
+        </ul>
+      </div>
+
+      {/* %%%%%%%%% FAVORITE LINKS MAP %%%%%%%%% */}
+
+      {allLinks?.map(({ id, name, url }) => (
+
+
+        <div key={id} style={{ display: 'flex', justifyContent: 'space-between', position: 'relative' }}>
+
+
+
+
+          <a href={url} target={'_blank'} rel="noopener noreferrer external">{name}</a>
+
+
 
         </div >
 

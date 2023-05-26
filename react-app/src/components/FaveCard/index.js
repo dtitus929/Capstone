@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import * as faveActions from '../../store/faves';
 
 
@@ -75,11 +75,11 @@ function FaveCard(props) {
 
     function handleConfirmation(action, id) {
         if (action === 'show') {
-            document.getElementById(`initiate-delete-${id}`).style.display = 'none'
-            document.getElementById(`confirm-delete-${id}`).style.display = 'block'
+            document.getElementById(`initiate-fave-delete-${id}`).style.display = 'none'
+            document.getElementById(`confirm-fave-delete-${id}`).style.display = 'block'
         } else {
-            document.getElementById(`initiate-delete-${id}`).style.display = 'block'
-            document.getElementById(`confirm-delete-${id}`).style.display = 'none'
+            document.getElementById(`initiate-fave-delete-${id}`).style.display = 'block'
+            document.getElementById(`confirm-fave-delete-${id}`).style.display = 'none'
         }
     }
 
@@ -121,9 +121,9 @@ function FaveCard(props) {
                         <form onSubmit={handleDeleteFave}>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
 
-                                <div id={`initiate-delete-${id}`} style={{ margin: '0px 75px 0px 75px', textAlign: 'center', cursor: 'pointer', fontSize: '11px', padding: '2px 10px 2px 2px' }} className="deletetask-button-init" type="submit" onClick={() => { handleConfirmation('show', id) }}><i className="far fa-times-circle" style={{ fontSize: '11px' }} />&nbsp;&nbsp;Delete Link</div>
+                                <div id={`initiate-fave-delete-${id}`} style={{ margin: '0px 75px 0px 75px', textAlign: 'center', cursor: 'pointer', fontSize: '11px', padding: '2px 10px 2px 2px' }} className="deletetask-button-init" type="submit" onClick={() => { handleConfirmation('show', id) }}><i className="far fa-times-circle" style={{ fontSize: '11px' }} />&nbsp;&nbsp;Delete Link</div>
 
-                                <div id={`confirm-delete-${id}`} style={{ display: 'none' }}>
+                                <div id={`confirm-fave-delete-${id}`} style={{ display: 'none' }}>
                                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
                                         <div style={{ fontSize: '12px' }}>Permanently delete this link?</div>
                                         <div style={{ display: 'flex', textAlign: 'center', marginTop: '10px' }}>

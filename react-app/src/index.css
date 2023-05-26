@@ -80,6 +80,16 @@ button:hover {
     width: 220px;
 }
 
+.profile-dropdown2 {
+    position: absolute;
+    transform: translateX(-200px);
+    top: 130px;
+    padding: 0px;
+    margin: 0px;
+    z-index: 30;
+    width: 220px;
+}
+
 .profile-popup div {
     padding: 0px 0px;
     margin: 0px 20px;

@@ -4,6 +4,7 @@ import * as listActions from '../../store/lists';
 import * as faveActions from '../../store/faves';
 // import { Link } from "react-router-dom";
 import ListCard from "../ListCard";
+import FaveCard from "../FaveCard";
 import { useParams, useHistory } from "react-router-dom";
 
 
@@ -235,19 +236,9 @@ function Lists(props) {
 
       {arrFaves?.map(({ id, name, url }) => (
 
-
         <div key={id} style={{ display: 'flex', justifyContent: 'space-between', position: 'relative' }}>
-
-
-
-
-          <a href={url} target={'_blank'} rel="noopener noreferrer external">{name}</a>
-
-
-
+          <FaveCard id={id} name={name} url={url} />
         </div >
-
-
       ))
       }
 

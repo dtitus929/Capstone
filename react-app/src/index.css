@@ -83,7 +83,7 @@ button:hover {
 .profile-dropdown2 {
     position: absolute;
     transform: translateX(-200px);
-    top: 130px;
+    top: 110px;
     padding: 0px;
     margin: 0px;
     z-index: 30;

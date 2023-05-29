@@ -2,11 +2,9 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as listActions from '../../store/lists';
 import * as faveActions from '../../store/faves';
-// import { Link } from "react-router-dom";
 import ListCard from "../ListCard";
 import FaveCard from "../FaveCard";
 import { useParams, useHistory } from "react-router-dom";
-
 
 function Lists(props) {
 
@@ -72,9 +70,7 @@ function Lists(props) {
 
   const addList = async (e) => {
     e.preventDefault();
-
     const data = await dispatch(listActions.addChannelThunk(name, 'standard'));
-
     if (!data.id) {
       setErrors(data);
       return
@@ -84,12 +80,9 @@ function Lists(props) {
       window.showHideTaskbar('hide')
       history.push(`/${data.id}`);
     }
-
   };
 
-
   const { listId } = useParams();
-
 
   useEffect(() => {
     dispatch(listActions.getAllListsThunk());
@@ -101,21 +94,17 @@ function Lists(props) {
 
   const addFave = async (e) => {
     e.preventDefault();
-
     const data = await dispatch(faveActions.addFaveThunk(name, url));
-
     if (!data.id) {
       setErrors(data);
       return
     } else {
       closeMenu2();
     }
-
   };
 
   const allFaves = useSelector((state) => state.faves.allFaves);
   const arrFaves = Object.values(allFaves);
-
 
   return (
     <>
@@ -145,11 +134,13 @@ function Lists(props) {
       {/* %%%%%%%%% LISTS %%%%%%%%% */}
 
       <div style={{ fontSize: '14px', margin: '16px 0px 0px 5px', display: 'flex', justifyContent: 'space-between', borderTop: '1px solid #bcd0eb', paddingTop: '10px' }}>
+
         <div><span style={{ fontSize: '6px', padding: '0px 3px 2px 0px' }}>&#9660;</span>Lists</div>
         <div><button onClick={openMenu} className="editlist-button" style={{ marginRight: '6px' }}><i className="far fa-plus-square" /></button></div>
 
         <ul className={ulClassName} ref={ulRef}>
           <div className="add-list-popup">
+
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <div style={{
                 fontWeight: 'bold', color: '#0060bf'
@@ -176,13 +167,13 @@ function Lists(props) {
 
           </div>
         </ul>
+
       </div>
 
       {/* %%%%%%%%% LISTS MAP %%%%%%%%% */}
 
       {arrLists?.map(({ id, name, type }) => (
         <div key={id} style={{ display: 'flex', justifyContent: 'space-between', position: 'relative' }}>
-
           {type === 'standard' && (
             <>
               <ListCard setSelectedTask={setSelectedTask} id={id} name={name} type={type} listId={listId} />
@@ -195,12 +186,13 @@ function Lists(props) {
       {/* %%%%%%%% FAVORITE LINKS %%%%%%%%%% */}
 
       <div style={{ fontSize: '14px', margin: '16px 0px 0px 5px', display: 'flex', justifyContent: 'space-between', borderTop: '1px solid #bcd0eb', paddingTop: '10px' }}>
+
         <div><span style={{ fontSize: '6px', padding: '0px 3px 2px 0px' }}>&#9660;</span>Favorite Links</div>
         <div><button onClick={openMenu2} className="editlist-button" style={{ marginRight: '6px' }}><i className="far fa-plus-square" /></button></div>
 
         <ul className={ulClassName2} ref={ulRef2}>
-
           <div className="add-list-popup">
+
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <div style={{
                 fontWeight: 'bold', color: '#0060bf'
@@ -230,18 +222,17 @@ function Lists(props) {
 
           </div>
         </ul>
+
       </div>
 
       {/* %%%%%%%%% FAVORITE LINKS MAP %%%%%%%%% */}
 
       {arrFaves?.map(({ id, name, url }) => (
-
         <div key={id} style={{ display: 'flex', justifyContent: 'space-between', position: 'relative' }}>
           <FaveCard id={id} name={name} url={url} />
         </div >
       ))
       }
-
 
     </>
   );

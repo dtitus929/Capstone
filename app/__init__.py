@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, request, redirect
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
@@ -13,7 +13,9 @@ from .api.fave_routes import fave_routes
 from .seeds import seed_commands
 from .config import Config
 
+
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
+
 
 # Setup login manager
 login = LoginManager(app)
@@ -36,6 +38,7 @@ app.register_blueprint(list_routes, url_prefix='/api/lists')
 app.register_blueprint(fave_routes, url_prefix='/api/faves')
 db.init_app(app)
 Migrate(app, db)
+
 
 # Application Security
 CORS(app)

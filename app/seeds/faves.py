@@ -2,7 +2,7 @@ from app.models import db, Fave, environment, SCHEMA
 from sqlalchemy.sql import text
 
 
-# Adds a demo user, you can add other users here if you want
+# Add favorite link seed data
 def seed_faves():
     fave1 = Fave(name='Art', url='https://www.art.com/', user_id=1)
     fave2 = Fave(name='Google', url='https://www.google.com/', user_id=1)

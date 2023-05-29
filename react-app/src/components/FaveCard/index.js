@@ -1,18 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-// import { Link } from "react-router-dom";
 import * as faveActions from '../../store/faves';
-
 
 function FaveCard(props) {
 
-
     const dispatch = useDispatch();
-
     const { id, name, url } = props;
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
-
     const [faveName, setFaveName] = useState(name);
     const [faveUrl, setFaveUrl] = useState(url);
     const [errors, setErrors] = useState([]);
@@ -26,15 +21,12 @@ function FaveCard(props) {
 
     useEffect(() => {
         if (!showMenu) return;
-
         const closeMenu = (e) => {
             if (!ulRef.current.contains(e.target)) {
                 setShowMenu(false);
             }
         };
-
         document.addEventListener("click", closeMenu);
-
         return () => document.removeEventListener("click", closeMenu);
     }, [showMenu]);
 
@@ -46,7 +38,6 @@ function FaveCard(props) {
 
     const handleEditFave = async (e) => {
         e.preventDefault();
-
         const data = await dispatch(faveActions.editFaveThunk(id, faveName, faveUrl));
         if (data) {
             setErrors(data);
@@ -56,13 +47,10 @@ function FaveCard(props) {
         }
     };
 
-
     const handleDeleteFave = async (e) => {
         e.preventDefault();
-
         const data = await dispatch(faveActions.deleteFaveThunk(id));
         closeMenu();
-
         if (data) {
             setErrors(data);
             return
@@ -93,6 +81,7 @@ function FaveCard(props) {
 
             <ul className={ulClassName} ref={ulRef}>
                 <div id={`editDeleteList-${id}`} className="edit-list-popup" style={{ paddingBottom: '10px' }}>
+
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <div style={{
                             fontWeight: 'bold', color: '#0060bf'
@@ -110,19 +99,15 @@ function FaveCard(props) {
 
                         <form onSubmit={handleEditFave}>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-
                                 <input style={{ margin: '0px 0px 0px 0px' }} className="edittask-input-field" type="text" value={faveName} placeholder={faveName} onChange={(e) => setFaveName(e.target.value)} required />
                                 <input style={{ margin: '0px 0px 0px 0px' }} className="edittask-input-field" type="text" value={faveUrl} placeholder={faveUrl} onChange={(e) => setFaveUrl(e.target.value)} required />
                                 <button style={{ margin: '10px 60px 10px 60px', fontSize: '12px', padding: '4px 8px 4px 4px' }} className="logout-button" type="submit"><i className="far fa-edit" style={{ fontSize: '12px' }} />&nbsp;&nbsp;Change Link</button>
-
                             </div>
                         </form>
 
                         <form onSubmit={handleDeleteFave}>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-
                                 <div id={`initiate-fave-delete-${id}`} style={{ margin: '0px 75px 0px 75px', textAlign: 'center', cursor: 'pointer', fontSize: '11px', padding: '2px 10px 2px 2px' }} className="deletetask-button-init" type="submit" onClick={() => { handleConfirmation('show', id) }}><i className="far fa-times-circle" style={{ fontSize: '11px' }} />&nbsp;&nbsp;Delete Link</div>
-
                                 <div id={`confirm-fave-delete-${id}`} style={{ display: 'none' }}>
                                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
                                         <div style={{ fontSize: '12px' }}>Permanently delete this link?</div>
@@ -132,10 +117,8 @@ function FaveCard(props) {
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </form>
-
                     </div>
 
                 </div>

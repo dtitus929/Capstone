@@ -4,17 +4,13 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import * as listActions from '../../store/lists'
 
-
 function ListCard(props) {
-
 
     const dispatch = useDispatch();
     const history = useHistory();
-
     const { id, name, type, listId, setSelectedTask } = props;
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
-
     const [list_name, setListName] = useState(name);
     const [errors, setErrors] = useState([]);
 
@@ -27,15 +23,12 @@ function ListCard(props) {
 
     useEffect(() => {
         if (!showMenu) return;
-
         const closeMenu = (e) => {
             if (!ulRef.current.contains(e.target)) {
                 setShowMenu(false);
             }
         };
-
         document.addEventListener("click", closeMenu);
-
         return () => document.removeEventListener("click", closeMenu);
     }, [showMenu]);
 
@@ -47,7 +40,6 @@ function ListCard(props) {
 
     const handleEditList = async (e) => {
         e.preventDefault();
-
         const data = await dispatch(listActions.editListThunk(id, list_name));
         if (data) {
             setErrors(data);
@@ -60,11 +52,9 @@ function ListCard(props) {
 
     const handleDeleteList = async (e) => {
         e.preventDefault();
-
         const data = await dispatch(listActions.deleteListThunk(id));
         closeMenu();
         history.push("/home");
-
         if (data) {
             setErrors(data);
             return
@@ -107,6 +97,7 @@ function ListCard(props) {
 
             <ul className={ulClassName} ref={ulRef}>
                 <div id={`editDeleteList-${id}`} className="edit-list-popup" style={{ paddingBottom: '10px' }}>
+
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <div style={{
                             fontWeight: 'bold', color: '#0060bf'
@@ -151,7 +142,6 @@ function ListCard(props) {
 
                     </div>
 
-                    {/* {name} / {id} / {listId} */}
                 </div>
             </ul>
 

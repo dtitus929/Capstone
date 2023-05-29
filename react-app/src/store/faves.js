@@ -9,13 +9,11 @@ const CLEAR_FAVES = "faves/CLEAR_FAVES"
 const allFaves = (faves) => ({
     type: GET_ALL_FAVES,
     payload: faves,
-
 });
 
 const editFave = (fave) => ({
     type: EDIT_FAVE,
     payload: fave,
-
 });
 
 export const deleteFave = (id) => {
@@ -46,7 +44,6 @@ export const clearFavesThunk = () => (dispatch) => {
 
 // =================
 
-
 export const getAllFavesThunk = () => async (dispatch) => {
     const response = await fetch("/api/faves/");
 
@@ -62,8 +59,6 @@ export const getAllFavesThunk = () => async (dispatch) => {
 // =================
 
 export const editFaveThunk = (id, name, url) => async (dispatch) => {
-    // console.log('MyID:', id);
-    // console.log('MyName:', name);
     const response = await fetch(`/api/faves/${id}`, {
         method: 'PUT',
         headers: {
@@ -71,8 +66,6 @@ export const editFaveThunk = (id, name, url) => async (dispatch) => {
         },
         body: JSON.stringify({ name, url }),
     });
-
-    console.log('RESPONSE:', response)
 
     if (response.ok) {
         const data = await response.json();
@@ -153,17 +146,13 @@ export default function faveReducer(state = initialState, action) {
             newState.allFaves[action.payload.id] = action.payload;
             return newState;
 
-
         case DELETE_FAVE:
             newState = { ...state }
             newState.allFaves = { ...state.allFaves };
             delete newState.allFaves[action.id];
             return newState;
 
-
         case ADD_FAVE:
-            // console.log('IN ADD_FAVE');
-            // console.log('ThePayload is:', action.payload);
             newState = { ...state }
             newState.allFaves = { ...state.allFaves };
             newState.allFaves[action.payload.id] = action.payload;
@@ -176,5 +165,7 @@ export default function faveReducer(state = initialState, action) {
 
         default:
             return state;
+
     }
+
 }

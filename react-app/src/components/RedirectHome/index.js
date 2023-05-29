@@ -8,7 +8,7 @@ function RedirectHome() {
 
     useEffect(() => {
         history.push("/home");
-    }, []);
+    }, [history]);
 
 
     return (

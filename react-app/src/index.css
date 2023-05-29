@@ -48,8 +48,6 @@ button:hover {
     border: 6px solid #ffffff;
 }
 
-/* ================= */
-
 /* %%%%%%%%% Login/Signup + Profile Button/Popup   %%%%%%%%%%%% */
 
 #layout-top {
@@ -237,7 +235,6 @@ button:hover {
 
 /* %%%%%%%% Task Card %%%%%%%% */
 
-
 .task-card {
     border-top: 1px dotted #b7b7b7;
     font-size: 13px;
@@ -334,7 +331,6 @@ button:hover {
     background-color: #006bd6;
 }
 
-
 /* %%%%%%%% Edit Task %%%%%%%% */
 
 .taskform-shell {
@@ -400,7 +396,6 @@ button:hover {
 }
 
 /* %%%%%%%% List Card %%%%%%%% */
-
 
 .list-link {
     font-size: 14px;

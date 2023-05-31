@@ -78,7 +78,7 @@ button:hover {
     width: 220px;
 }
 
-.profile-dropdown2 {
+.profile-dropdown-alt {
     position: absolute;
     transform: translateX(-200px);
     top: 110px;

@@ -13,58 +13,58 @@ function Lists(props) {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [showMenu, setShowMenu] = useState(false);
-  const [showMenu2, setShowMenu2] = useState(false);
-  const ulRef = useRef();
-  const ulRef2 = useRef();
+  const [showNewList, setShowNewList] = useState(false);
+  const [showNewFave, setShowNewFave] = useState(false);
+  const newList = useRef();
+  const newFave = useRef();
   const [name, setName] = useState('');
   const [url, setUrl] = useState('');
   const [errors, setErrors] = useState([]);
 
-  const openMenu = () => {
-    if (showMenu) return;
+  const openNewList = () => {
+    if (showNewList) return;
     setName('');
     setUrl('');
     setErrors([]);
-    setShowMenu(true);
+    setShowNewList(true);
   };
 
-  const openMenu2 = () => {
-    if (showMenu2) return;
+  const openNewFave = () => {
+    if (showNewFave) return;
     setName('');
     setUrl('');
     setErrors([]);
-    setShowMenu2(true);
+    setShowNewFave(true);
   };
 
   // ---------
 
   useEffect(() => {
-    if (!showMenu) return;
-    const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
-        setShowMenu(false);
+    if (!showNewList) return;
+    const closeNewList = (e) => {
+      if (!newList.current.contains(e.target)) {
+        setShowNewList(false);
       }
     };
-    document.addEventListener("click", closeMenu);
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+    document.addEventListener("click", closeNewList);
+    return () => document.removeEventListener("click", closeNewList);
+  }, [showNewList]);
 
   useEffect(() => {
-    if (!showMenu2) return;
-    const closeMenu2 = (e) => {
-      if (!ulRef2.current.contains(e.target)) {
-        setShowMenu2(false);
+    if (!showNewFave) return;
+    const closeNewFave = (e) => {
+      if (!newFave.current.contains(e.target)) {
+        setShowNewFave(false);
       }
     };
-    document.addEventListener("click", closeMenu2);
-    return () => document.removeEventListener("click", closeMenu2);
-  }, [showMenu2]);
+    document.addEventListener("click", closeNewFave);
+    return () => document.removeEventListener("click", closeNewFave);
+  }, [showNewFave]);
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-  const ulClassName2 = "profile-dropdown2" + (showMenu2 ? "" : " hidden");
-  const closeMenu = () => setShowMenu(false);
-  const closeMenu2 = () => setShowMenu2(false);
+  const classNewList = "profile-dropdown" + (showNewList ? "" : " hidden");
+  const classNewFave = "profile-dropdown-alt" + (showNewFave ? "" : " hidden");
+  const closeNewList = () => setShowNewList(false);
+  const closeNewFave = () => setShowNewFave(false);
 
   // ---------
 
@@ -75,7 +75,7 @@ function Lists(props) {
       setErrors(data);
       return
     } else {
-      closeMenu();
+      closeNewList();
       setSelectedTask('')
       window.showHideTaskbar('hide')
       history.push(`/${data.id}`);
@@ -99,7 +99,7 @@ function Lists(props) {
       setErrors(data);
       return
     } else {
-      closeMenu2();
+      closeNewFave();
     }
   };
 
@@ -136,16 +136,16 @@ function Lists(props) {
       <div style={{ fontSize: '14px', margin: '16px 0px 0px 5px', display: 'flex', justifyContent: 'space-between', borderTop: '1px solid #bcd0eb', paddingTop: '10px' }}>
 
         <div><span style={{ fontSize: '6px', padding: '0px 3px 2px 0px' }}>&#9660;</span>Lists</div>
-        <div><button onClick={openMenu} className="editlist-button" style={{ marginRight: '6px' }}><i className="far fa-plus-square" /></button></div>
+        <div><button onClick={openNewList} className="editlist-button" style={{ marginRight: '6px' }}><i className="far fa-plus-square" /></button></div>
 
-        <ul className={ulClassName} ref={ulRef}>
+        <ul className={classNewList} ref={newList}>
           <div className="add-list-popup">
 
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <div style={{
                 fontWeight: 'bold', color: '#0060bf'
               }}>Add New List</div>
-              <button className="close-popup" onClick={closeMenu}><i className="fas fa-times" /></button>
+              <button className="close-popup" onClick={closeNewList}><i className="fas fa-times" /></button>
             </div>
 
             <div className="form-div" style={{ margin: '5px 0px 0px 0px' }}>
@@ -188,16 +188,16 @@ function Lists(props) {
       <div style={{ fontSize: '14px', margin: '16px 0px 0px 5px', display: 'flex', justifyContent: 'space-between', borderTop: '1px solid #bcd0eb', paddingTop: '10px' }}>
 
         <div><span style={{ fontSize: '6px', padding: '0px 3px 2px 0px' }}>&#9660;</span>Favorite Links</div>
-        <div><button onClick={openMenu2} className="editlist-button" style={{ marginRight: '6px' }}><i className="far fa-plus-square" /></button></div>
+        <div><button onClick={openNewFave} className="editlist-button" style={{ marginRight: '6px' }}><i className="far fa-plus-square" /></button></div>
 
-        <ul className={ulClassName2} ref={ulRef2}>
+        <ul className={classNewFave} ref={newFave}>
           <div className="add-list-popup">
 
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <div style={{
                 fontWeight: 'bold', color: '#0060bf'
               }}>Add New Favorite Link</div>
-              <button className="close-popup" onClick={closeMenu2}><i className="fas fa-times" /></button>
+              <button className="close-popup" onClick={closeNewFave}><i className="fas fa-times" /></button>
             </div>
 
             <div className="form-div" style={{ margin: '5px 0px 0px 0px' }}>

@@ -85,7 +85,7 @@ function FaveCard(props) {
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <div style={{
                             fontWeight: 'bold', color: '#0060bf'
-                        }}>Edit Link</div>
+                        }}>Edit Favorite Link</div>
                         <button className="close-popup" onClick={closeMenu}><i className="fas fa-times" /></button>
                     </div>
 

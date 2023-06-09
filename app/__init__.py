@@ -10,6 +10,7 @@ from .api.auth_routes import auth_routes
 from .api.task_routes import task_routes
 from .api.list_routes import list_routes
 from .api.fave_routes import fave_routes
+from .api.contact_routes import contact_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -36,6 +37,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(task_routes, url_prefix='/api/tasks')
 app.register_blueprint(list_routes, url_prefix='/api/lists')
 app.register_blueprint(fave_routes, url_prefix='/api/faves')
+app.register_blueprint(contact_routes, url_prefix='/api/contacts')
 db.init_app(app)
 Migrate(app, db)
 

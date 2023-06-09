@@ -1,8 +1,8 @@
 """create tables
 
-Revision ID: 8d3a8786bdab
+Revision ID: c6a4cb0d374a
 Revises: 
-Create Date: 2023-05-25 16:37:02.326233
+Create Date: 2023-06-09 12:21:42.140131
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '8d3a8786bdab'
+revision = 'c6a4cb0d374a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -28,6 +28,19 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
+    )
+    op.create_table('contacts',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=50), nullable=False),
+    sa.Column('address', sa.String(length=255), nullable=True),
+    sa.Column('city', sa.String(length=100), nullable=True),
+    sa.Column('state', sa.String(length=50), nullable=True),
+    sa.Column('zip', sa.String(length=20), nullable=True),
+    sa.Column('phone', sa.String(length=20), nullable=True),
+    sa.Column('url', sa.String(length=250), nullable=True),
+    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('faves',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -68,5 +81,6 @@ def downgrade():
     op.drop_table('tasks')
     op.drop_table('lists')
     op.drop_table('faves')
+    op.drop_table('contacts')
     op.drop_table('users')
     # ### end Alembic commands ###

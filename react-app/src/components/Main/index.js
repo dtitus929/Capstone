@@ -126,8 +126,8 @@ function Main() {
 
                         <div id="list-nums-holder">
                             {thisList && (
-                                <div id="list-name" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-                                    <div style={{ marginRight: '20px', width: '240px', overflow: 'hidden', textOverflow: 'ellipsis' }}>{thisList.name}</div>
+                                <div id="list-name" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'flex-start' }}>
+                                    <div style={{ marginRight: '20px', overflow: 'hidden', textOverflow: 'ellipsis' }}>{thisList.name}</div>
                                     <div style={{ marginRight: '20px', fontSize: '14px', color: 'rgb(0, 0, 0, .25)', whiteSpace: 'nowrap' }}>{arrTasks.length} total tasks</div>
                                 </div>
                             )}

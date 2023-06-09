@@ -1,5 +1,4 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Lists from "../Lists";
 import Tasks from "../Tasks";
@@ -18,12 +17,9 @@ function Main() {
 
     const [selectedTask, setSelectedTask] = useState("");
 
-
     const dispatch = useDispatch();
 
     const { listId } = useParams();
-
-    // console.log(listId);
 
     useEffect(() => {
         dispatch(listActions.getAllListsThunk());
@@ -38,20 +34,12 @@ function Main() {
             return el.name === "Inbox";
         });
     }
-    // if (listInbox.length) {
-    //     console.log('Inbox:', listInbox)
-    //     console.log('InboxId:', listInbox[0].id)
-    // }
 
     let listTrash = [];
     if (arrLists) {
         listTrash = arrLists.filter(function (el) {
             return el.name === "Trash";
         });
-    }
-    if (listTrash.length) {
-        // console.log('Trash:', listTrash)
-        // console.log('TrashId:', listTrash[0].id)
     }
 
     const thisList = allLists[listId];
@@ -61,8 +49,6 @@ function Main() {
             history.push(`/${listInbox[0].id}`);
         }
     }, [listInbox]);
-
-
 
     useEffect(() => {
         if (listId !== 'home') {
@@ -90,9 +76,7 @@ function Main() {
         return el.completed === false;
     });
 
-
     return (
-
 
         <div id="layout-main">
 
@@ -112,7 +96,6 @@ function Main() {
             {/* %%%%%%%%%%%%%%%%%%% */}
 
             <div id="layout-content">
-
 
                 {/* ========== */}
 
@@ -135,7 +118,6 @@ function Main() {
 
                 </div>
 
-
                 {/* %%%%%%%%%%%%%%%%%%% */}
 
                 <div id="layout-content-right">
@@ -144,11 +126,9 @@ function Main() {
 
                         <div id="list-nums-holder">
                             {thisList && (
-                                <div id="list-name" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-
-                                    <div style={{ marginRight: '20px', width: '240px', overflow: 'hidden', textOverflow: 'ellipsis' }}>{thisList.name}</div>
+                                <div id="list-name" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'flex-start' }}>
+                                    <div style={{ marginRight: '20px', overflow: 'hidden', textOverflow: 'ellipsis' }}>{thisList.name}</div>
                                     <div style={{ marginRight: '20px', fontSize: '14px', color: 'rgb(0, 0, 0, .25)', whiteSpace: 'nowrap' }}>{arrTasks.length} total tasks</div>
-
                                 </div>
                             )}
 
@@ -159,7 +139,6 @@ function Main() {
                                         <div style={{ fontSize: '19px', fontWeight: '600', color: '#0260bf' }}>{uncompleteTasks.length}</div>
                                         <div style={{ fontSize: '11px' }} >incomplete</div>
                                     </div>
-
                                 )}
 
                                 {arrTasks && (
@@ -167,7 +146,6 @@ function Main() {
                                         <div style={{ fontSize: '19px', fontWeight: '600', color: '#838a93' }}>{completedTasks.length}</div>
                                         <div style={{ fontSize: '11px', color: '#838a93' }} >completed</div>
                                     </div>
-
                                 )}
 
                             </div>
@@ -179,7 +157,6 @@ function Main() {
                             {/* FOOTER  */}
 
                             <div>© {new Date().getFullYear()} Remember The Eggs</div>
-
 
                             <div style={{ display: 'flex', alignItems: 'center', marginTop: '5px' }}>
 
@@ -221,14 +198,7 @@ function Main() {
 
                             </div >
 
-
-
-
-
-
-
                         </div>
-
 
                     </div>
 
@@ -242,8 +212,6 @@ function Main() {
             {/* %%%%%%%%%%%%%%%%%%% */}
 
         </div >
-
-
     );
 }
 

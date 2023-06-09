@@ -48,8 +48,6 @@ button:hover {
     border: 6px solid #ffffff;
 }
 
-/* ================= */
-
 /* %%%%%%%%% Login/Signup + Profile Button/Popup   %%%%%%%%%%%% */
 
 #layout-top {
@@ -74,6 +72,16 @@ button:hover {
     position: absolute;
     transform: translateX(-200px);
     top: 34px;
+    padding: 0px;
+    margin: 0px;
+    z-index: 30;
+    width: 220px;
+}
+
+.profile-dropdown-alt {
+    position: absolute;
+    transform: translateX(-200px);
+    top: 110px;
     padding: 0px;
     margin: 0px;
     z-index: 30;
@@ -146,6 +154,7 @@ button:hover {
 
 .lists-leftside {
     padding: 0px 5px;
+    margin-bottom: 30px;
 }
 
 #layout-content {
@@ -226,7 +235,6 @@ button:hover {
 }
 
 /* %%%%%%%% Task Card %%%%%%%% */
-
 
 .task-card {
     border-top: 1px dotted #b7b7b7;
@@ -324,7 +332,6 @@ button:hover {
     background-color: #006bd6;
 }
 
-
 /* %%%%%%%% Edit Task %%%%%%%% */
 
 .taskform-shell {
@@ -390,7 +397,6 @@ button:hover {
 }
 
 /* %%%%%%%% List Card %%%%%%%% */
-
 
 .list-link {
     font-size: 14px;

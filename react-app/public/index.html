@@ -15,11 +15,24 @@
     <title>Remember the Eggs</title>
 
     <script>
+
       function showHideTaskbar(action) {
         if (action === 'show') {
           document.getElementById("layout-content-right-taskbar").style.display = "block";
         } else {
           document.getElementById("layout-content-right-taskbar").style.display = "none";
+        }
+      }
+
+      let showingContacts = false;
+
+      function showHideContactbar(action) {
+        if (action === 'show') {
+          document.getElementById("layout-content-right-contactbar").style.display = "block";
+          window.showingContacts = true
+        } else {
+          document.getElementById("layout-content-right-contactbar").style.display = "none";
+          window.showingContacts = false
         }
       }
     </script>

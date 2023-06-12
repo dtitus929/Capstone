@@ -64,6 +64,7 @@ function ListCard(props) {
     function handleCloseWindow() {
         setSelectedTask('')
         window.showHideTaskbar('hide')
+        window.showHideContactbar('hide')
     }
 
     function handleConfirmation(action, id) {

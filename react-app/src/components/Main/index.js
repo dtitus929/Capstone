@@ -5,6 +5,7 @@ import Tasks from "../Tasks";
 import logo from './rem-eggs-logo.svg'
 import bgimage from './dotted-bg.gif'
 import EditTaskCard from "../EditTask";
+import Contacts from "../Contacts";
 
 import * as listActions from '../../store/lists'
 import * as taskActions from '../../store/tasks'
@@ -115,6 +116,13 @@ function Main() {
                 <div id="layout-content-right-taskbar">
 
                     <EditTaskCard listTrash={listTrash} />
+
+                </div>
+
+                <div id="layout-content-right-contactbar">
+
+                    {/* <EditTaskCard listTrash={listTrash} /> */}
+                    <Contacts />
 
                 </div>
 

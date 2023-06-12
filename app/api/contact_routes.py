@@ -85,18 +85,18 @@ def contact_edit(id):
 
 @contact_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
-def fave_delete(id):
+def contact_delete(id):
     """
-    Query for a fave by id, delete that fave, and return success message
+    Query for a contact by id, delete that contact, and return success message
     """
-    fave = Fave.query.get(id)
+    contact = Contact.query.get(id)
 
-    if not fave:
-        return {'message': 'Fave couldn\'t be found', "statusCode": 404}, 404
+    if not contact:
+        return {'message': 'Contact couldn\'t be found', "statusCode": 404}, 404
 
-    if current_user.id != fave.user_id:
+    if current_user.id != contact.user_id:
         return {'message': 'Forbidden', "statusCode": 403}, 403
 
-    db.session.delete(fave)
+    db.session.delete(contact)
     db.session.commit()
-    return {"message": "Fave successfully deleted"}, 200
+    return {"message": "Contact successfully deleted"}, 200

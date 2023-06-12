@@ -3,6 +3,7 @@ from .users import seed_users, undo_users
 from .lists import seed_lists, undo_lists
 from .tasks import seed_tasks, undo_tasks
 from .faves import seed_faves, undo_faves
+from .contacts import seed_contacts, undo_contacts
 
 from app.models.db import db, environment, SCHEMA
 
@@ -24,10 +25,12 @@ def seed():
         undo_lists()
         undo_users()
         undo_faves()
+        undo_contacts()
     seed_users()
     seed_lists()
     seed_tasks()
     seed_faves()
+    seed_contacts()
     # Add other seed functions here
 
 
@@ -38,4 +41,5 @@ def undo():
     undo_lists()
     undo_users()
     undo_faves()
+    undo_contacts()
     # Add other undo functions here

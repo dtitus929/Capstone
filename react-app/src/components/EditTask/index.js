@@ -215,9 +215,9 @@ function EditTaskCard(props) {
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
 
                             {listId && Number(listId) === Number(listTrash[0]?.id) ? (
-                                <div id="initiate-delete" style={{ margin: '0px 115px 0px 115px', textAlign: 'center', cursor: 'pointer', padding: '5px 15px 5px 10px' }} className="deletetask-button-init" onClick={() => { handleConfirmation('show') }}><i className="far fa-times-circle" style={{ fontSize: '13px' }} />&nbsp;&nbsp;Delete Task</div>
+                                <div id="initiate-delete" style={{ margin: '0px 115px 0px 115px', textAlign: 'center', cursor: 'pointer', padding: '5px 15px 5px 10px', whiteSpace: 'nowrap' }} className="deletetask-button-init" onClick={() => { handleConfirmation('show') }}><i className="far fa-times-circle" style={{ fontSize: '13px' }} />&nbsp;&nbsp;Delete Task</div>
                             ) : (
-                                <button id="initiate-delete" style={{ margin: '0px 110px 0px 110px', textAlign: 'center', cursor: 'pointer', padding: '5px 15px 5px 10px' }} className="trash-button" type="submit"><i className="far fa-trash-alt" style={{ fontSize: '13px' }} />&nbsp; &nbsp; Move to Trash</button>
+                                <button id="initiate-delete" style={{ margin: '0px 110px 0px 110px', textAlign: 'center', cursor: 'pointer', padding: '5px 15px 5px 10px', whiteSpace: 'nowrap' }} className="trash-button" type="submit"><i className="far fa-trash-alt" style={{ fontSize: '13px' }} />&nbsp; &nbsp; Move to Trash</button>
                             )
                             }
 

@@ -9,13 +9,11 @@ const CLEAR_LISTS = "lists/CLEAR_LISTS"
 const allLists = (lists) => ({
     type: GET_ALL_LISTS,
     payload: lists,
-
 });
 
 const editList = (list) => ({
     type: EDIT_LIST,
     payload: list,
-
 });
 
 export const deleteList = (id) => {
@@ -46,7 +44,6 @@ export const clearListsThunk = () => (dispatch) => {
 
 // =================
 
-
 export const getAllListsThunk = () => async (dispatch) => {
     const response = await fetch("/api/lists/");
 
@@ -62,8 +59,6 @@ export const getAllListsThunk = () => async (dispatch) => {
 // =================
 
 export const editListThunk = (id, name) => async (dispatch) => {
-    console.log('MyID:', id);
-    console.log('MyName:', name);
     const response = await fetch(`/api/lists/${id}`, {
         method: 'PUT',
         headers: {
@@ -71,8 +66,6 @@ export const editListThunk = (id, name) => async (dispatch) => {
         },
         body: JSON.stringify({ name }),
     });
-
-    console.log('RESPONSE:', response)
 
     if (response.ok) {
         const data = await response.json();
@@ -153,17 +146,13 @@ export default function listReducer(state = initialState, action) {
             newState.allLists[action.payload.id] = action.payload;
             return newState;
 
-
         case DELETE_LIST:
             newState = { ...state }
             newState.allLists = { ...state.allLists };
             delete newState.allLists[action.id];
             return newState;
 
-
         case ADD_LIST:
-            console.log('IN ADD_LIST');
-            console.log('ThePayload is:', action.payload);
             newState = { ...state }
             newState.allLists = { ...state.allLists };
             newState.allLists[action.payload.id] = action.payload;

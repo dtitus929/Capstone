@@ -1,23 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
-import * as listActions from '../../store/lists'
+import * as faveActions from '../../store/faves';
 
-function ListCard(props) {
+function FaveCard(props) {
 
     const dispatch = useDispatch();
-    const history = useHistory();
-    const { id, name, type, listId, setSelectedTask } = props;
+    const { id, name, url } = props;
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
-    const [list_name, setListName] = useState(name);
+    const [faveName, setFaveName] = useState(name);
+    const [faveUrl, setFaveUrl] = useState(url);
     const [errors, setErrors] = useState([]);
 
     const openMenu = () => {
         if (showMenu) return;
         setShowMenu(true);
-        setListName(name);
+        setFaveName(name);
         setErrors([]);
     };
 
@@ -38,9 +36,9 @@ function ListCard(props) {
         setErrors([]);
     }
 
-    const handleEditList = async (e) => {
+    const handleEditFave = async (e) => {
         e.preventDefault();
-        const data = await dispatch(listActions.editListThunk(id, list_name));
+        const data = await dispatch(faveActions.editFaveThunk(id, faveName, faveUrl));
         if (data) {
             setErrors(data);
             return
@@ -49,12 +47,10 @@ function ListCard(props) {
         }
     };
 
-
-    const handleDeleteList = async (e) => {
+    const handleDeleteFave = async (e) => {
         e.preventDefault();
-        const data = await dispatch(listActions.deleteListThunk(id));
+        const data = await dispatch(faveActions.deleteFaveThunk(id));
         closeMenu();
-        history.push("/home");
         if (data) {
             setErrors(data);
             return
@@ -62,38 +58,25 @@ function ListCard(props) {
     };
 
     function handleCloseWindow() {
-        setSelectedTask('')
         window.showHideTaskbar('hide')
-        window.showHideContactbar('hide')
     }
 
     function handleConfirmation(action, id) {
         if (action === 'show') {
-            document.getElementById(`initiate-delete-${id}`).style.display = 'none'
-            document.getElementById(`confirm-delete-${id}`).style.display = 'block'
+            document.getElementById(`initiate-fave-delete-${id}`).style.display = 'none'
+            document.getElementById(`confirm-fave-delete-${id}`).style.display = 'block'
         } else {
-            document.getElementById(`initiate-delete-${id}`).style.display = 'block'
-            document.getElementById(`confirm-delete-${id}`).style.display = 'none'
+            document.getElementById(`initiate-fave-delete-${id}`).style.display = 'block'
+            document.getElementById(`confirm-fave-delete-${id}`).style.display = 'none'
         }
     }
 
     return (
         <>
+            <a onClick={() => { handleCloseWindow() }} className="list-link" title={name} href={url} target={'_blank'} rel="noopener noreferrer external">{name}</a>
 
-            <Link onClick={() => { handleCloseWindow() }} style={id == listId ? { color: '#0060bf', fontWeight: 'bold' } : { color: '#000000' }} className="list-link" title={name} to={`/${id}`}>
-                {name === 'Inbox' && (
-                    <i className="far fa-caret-square-right" style={{ fontSize: '13px', paddingRight: '4px' }} />
-                )}
-                {name === 'Trash' && (
-                    <i className="far fa-trash-alt" style={{ fontSize: '13px', paddingRight: '4px' }} />
-                )}
-                {name}
-            </Link>
-
-            <div style={type === 'standard' ? { display: 'block' } : { display: 'none' }}>
-                <div>
-                    <button onClick={openMenu} id={`editDeleteListButton-${id}`} className="editlist-button"><i className="far fa-edit" /></button>
-                </div>
+            <div>
+                <button onClick={openMenu} id={`editDeleteListButton-${id}`} className="editlist-button"><i className="far fa-edit" /></button>
             </div>
 
             <ul className={ulClassName} ref={ulRef}>
@@ -102,7 +85,7 @@ function ListCard(props) {
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <div style={{
                             fontWeight: 'bold', color: '#0060bf'
-                        }}>Edit List</div>
+                        }}>Edit Favorite Link</div>
                         <button className="close-popup" onClick={closeMenu}><i className="fas fa-times" /></button>
                     </div>
 
@@ -114,33 +97,28 @@ function ListCard(props) {
                             </div >
                         }
 
-                        <form onSubmit={handleEditList}>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-
-                                <input style={{ margin: '0px 0px 0px 0px' }} className="edittask-input-field" type="text" value={list_name} placeholder={list_name} onChange={(e) => setListName(e.target.value)} required />
-                                <button style={{ margin: '0px 60px 10px 60px', fontSize: '12px', padding: '4px 8px 4px 4px' }} className="logout-button" type="submit"><i className="far fa-edit" style={{ fontSize: '12px' }} />&nbsp;&nbsp;Change Name</button>
-
+                        <form onSubmit={handleEditFave}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                                <input style={{ margin: '0px 0px 0px 0px' }} className="edittask-input-field" type="text" value={faveName} placeholder={faveName} onChange={(e) => setFaveName(e.target.value)} required />
+                                <input style={{ margin: '0px 0px 0px 0px' }} className="edittask-input-field" type="text" value={faveUrl} placeholder={faveUrl} onChange={(e) => setFaveUrl(e.target.value)} required />
+                                <button style={{ margin: '10px 60px 10px 60px', fontSize: '12px', padding: '4px 8px 4px 4px' }} className="logout-button" type="submit"><i className="far fa-edit" style={{ fontSize: '12px' }} />&nbsp;&nbsp;Change Link</button>
                             </div>
                         </form>
 
-                        <form onSubmit={handleDeleteList}>
+                        <form onSubmit={handleDeleteFave}>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-
-                                <div id={`initiate-delete-${id}`} style={{ margin: '0px 75px 0px 75px', textAlign: 'center', cursor: 'pointer', fontSize: '11px', padding: '2px 10px 2px 2px' }} className="deletetask-button-init" type="submit" onClick={() => { handleConfirmation('show', id) }}><i className="far fa-times-circle" style={{ fontSize: '11px' }} />&nbsp;&nbsp;Delete List</div>
-
-                                <div id={`confirm-delete-${id}`} style={{ display: 'none' }}>
+                                <div id={`initiate-fave-delete-${id}`} style={{ margin: '0px 75px 0px 75px', textAlign: 'center', cursor: 'pointer', fontSize: '11px', padding: '2px 10px 2px 2px' }} className="deletetask-button-init" type="submit" onClick={() => { handleConfirmation('show', id) }}><i className="far fa-times-circle" style={{ fontSize: '11px' }} />&nbsp;&nbsp;Delete Link</div>
+                                <div id={`confirm-fave-delete-${id}`} style={{ display: 'none' }}>
                                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
-                                        <div style={{ fontSize: '12px' }}>Permanently delete this list?</div>
+                                        <div style={{ fontSize: '12px' }}>Permanently delete this link?</div>
                                         <div style={{ display: 'flex', textAlign: 'center', marginTop: '10px' }}>
                                             <div style={{ margin: '0px 5px 0px 0px', cursor: 'pointer', fontSize: '11px', padding: '3px 10px 2px 10px' }} className="logout-button" onClick={() => { handleConfirmation('cancel', id) }}>NO</div>
                                             <button style={{ margin: '0px 0px 0px 5px', fontSize: '11px', padding: '3px 10px 2px 10px' }} className="deletetask-button" type="submit">YES</button>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </form>
-
                     </div>
 
                 </div>
@@ -152,4 +130,4 @@ function ListCard(props) {
     );
 }
 
-export default ListCard;
+export default FaveCard;

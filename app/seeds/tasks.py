@@ -5,26 +5,26 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_tasks():
     u1l1t1 = Task(
-        name='This is task 1 in list 1 for user 1',
-        description="Description for task 1, list 1, user 1",
-        due_date='2023-04-20',
+        name='Take Fluffy to the dog groomer',
+        description="Remind groomer that Fluffy does NOT like the hair dryer and might bite!",
+        due_date='2023-08-20',
         priority=1,
         completed=False,
         list_id=1,
         user_id=1
     )
     u1l1t2 = Task(
-        name='This is task 2 in list 1 for user 1',
-        description="Description for task 2, list 1, user 1",
-        due_date='2023-05-20',
+        name="Order the cake for Frank's birthday party",
+        description="Frank is alergic to strawberries.  Magnolia Bakery phone number is in contacts.",
+        due_date='2023-09-04',
         priority=2,
         completed=False,
         list_id=1,
         user_id=1
     )
     u1l1t3 = Task(
-        name='This is task 3 in list 1 for user 1',
-        description="Description for task 3, list 1, user 1",
+        name='Sign the tax returns and send in to US Treasury',
+        description="Getting back $300 from federal and $425 from state",
         due_date='',
         priority=3,
         completed=True,
@@ -32,38 +32,58 @@ def seed_tasks():
         user_id=1
     )
     u1l2t1 = Task(
-        name='This is task 1 in list 2 for user 1',
-        description="Description for task 1, list 2, user 1",
+        name='Find last years tax returns in the basement',
+        description="Look in cabinet under the stairs.",
         due_date='2023-04-22',
+        priority=1,
+        completed=True,
+        list_id=2,
+        user_id=1
+    )
+    u1l2t2 = Task(
+        name='Buy laundry detergent',
+        description="Tide is on sale!",
+        due_date='2023-04-23',
         priority=3,
         completed=False,
         list_id=2,
         user_id=1
     )
-    u1l2t2 = Task(
-        name='This is task 2 in list 2 for user 1',
-        description="Description for task 2, list 2, user 1",
-        due_date='2023-04-23',
-        priority=3,
-        completed=True,
-        list_id=2,
-        user_id=1
-    )
     u1l3t1 = Task(
-        name='This is task 1 in list 3 for user 1',
-        description="Description for task 1, list 3, user 1",
-        due_date='2023-04-27',
-        priority=3,
+        name='Make sure Suzzie takes in the permission slip for her field trip',
+        description="Cost is $12.50.  Don't forget to pack a sack lunch.",
+        due_date='2023-06-27',
+        priority=2,
         completed=False,
         list_id=3,
         user_id=1
     )
 
+    u1l3t11 = Task(
+        name='Buy needed supplies for the neigborhood block party',
+        description="We're responsible for sodas and chips.",
+        due_date='2023-07-03',
+        priority=1,
+        completed=True,
+        list_id=3,
+        user_id=1
+    )
+
     u1l4t1 = Task(
-        name='This is task 1 in list 4 for user 1',
-        description="Description for task 1, list 4, user 1",
-        due_date='2023-04-27',
-        priority=3,
+        name='Contact HR about the new PTO policies',
+        description="There have been changes to both vacation and sick leave.",
+        due_date='2023-07-17',
+        priority=2,
+        completed=False,
+        list_id=4,
+        user_id=1
+    )
+
+    u1l4t11 = Task(
+        name='Send travel reciepts to accounting',
+        description="Terry went over allowed costs for hotel.  Note this on reciepts.",
+        due_date='2023-08-12',
+        priority=1,
         completed=False,
         list_id=4,
         user_id=1
@@ -126,6 +146,8 @@ def seed_tasks():
     db.session.add(u1l2t2)
     db.session.add(u1l4t1)
     db.session.add(u1l3t1)
+    db.session.add(u1l3t11)
+    db.session.add(u1l4t11)
     db.session.add(u2l1t1)
     db.session.add(u2l2t1)
     db.session.add(u2l3t1)

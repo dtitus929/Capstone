@@ -25,6 +25,15 @@ button:hover {
     height: 100%;
 }
 
+.contacts a, .contacts a:visited {
+    color: #006bd6;
+    text-decoration: none;
+}
+
+.contacts a:hover {
+    text-decoration: underline;
+}
+
 /* %%%%%%%%%% SCROLLBAR STYLING %%%%%%%%%%% */
 
 /* Works on Firefox */
@@ -47,8 +56,6 @@ button:hover {
     border-radius: 20px;
     border: 6px solid #ffffff;
 }
-
-/* ================= */
 
 /* %%%%%%%%% Login/Signup + Profile Button/Popup   %%%%%%%%%%%% */
 
@@ -74,6 +81,16 @@ button:hover {
     position: absolute;
     transform: translateX(-200px);
     top: 34px;
+    padding: 0px;
+    margin: 0px;
+    z-index: 30;
+    width: 220px;
+}
+
+.profile-dropdown-alt {
+    position: absolute;
+    transform: translateX(-200px);
+    top: 110px;
     padding: 0px;
     margin: 0px;
     z-index: 30;
@@ -146,6 +163,7 @@ button:hover {
 
 .lists-leftside {
     padding: 0px 5px;
+    margin-bottom: 30px;
 }
 
 #layout-content {
@@ -205,6 +223,24 @@ button:hover {
     overflow: hidden;
 }
 
+#layout-content-right-contactbar {
+    /* flex-grow: .95; */
+    width: 420px;
+    background-color: #ffffff;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding: 14px;
+    z-index: 22;
+    position: absolute;
+    right: 0px;
+    height: calc(100vh - 60px);
+    border-left: 1px solid #bdbdbd;
+    display: none;
+    overflow: hidden;
+}
+
 #list-name {
     font-size: 20px;
     font-weight: 500;
@@ -226,7 +262,6 @@ button:hover {
 }
 
 /* %%%%%%%% Task Card %%%%%%%% */
-
 
 .task-card {
     border-top: 1px dotted #b7b7b7;
@@ -324,7 +359,6 @@ button:hover {
     background-color: #006bd6;
 }
 
-
 /* %%%%%%%% Edit Task %%%%%%%% */
 
 .taskform-shell {
@@ -341,6 +375,19 @@ button:hover {
     padding: 6px;
     border: 1px solid grey;
     border-radius: 5px;
+}
+
+.editcontact-input-field {
+    padding: 4px 7px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    flex-grow: 1
+}
+
+.contactform-holder {
+    display: flex;
+    align-items: center;
+    gap: 3px;
 }
 
 .deletetask-button {
@@ -391,7 +438,6 @@ button:hover {
 
 /* %%%%%%%% List Card %%%%%%%% */
 
-
 .list-link {
     font-size: 14px;
     background-color: inherit;
@@ -422,6 +468,31 @@ button:hover {
 
 .editlist-button:hover {
     background-color: #bcd0eb;
+}
+
+.addcontact-button {
+    background-color: inherit;
+    padding: 3px 5px;
+    border: none;
+    border-radius: 3px;
+    position: relative;
+}
+
+.addcontact-button:hover {
+    background-color: #e2ebf7;
+}
+
+.editcontact-button {
+    background-color: inherit;
+    padding: 3px;
+    border: none;
+    border-radius: 3px;
+    position: relative;
+    margin: 0px;
+}
+
+.editcontact-button:hover {
+    background-color: #e2ebf7;
 }
 
 .edit-list-popup {
@@ -506,6 +577,11 @@ button:hover {
     }
 
     #layout-content-right-taskbar {
+        margin-bottom: 0px;
+        height: calc(100vh - 50px);
+    }
+
+    #layout-content-right-contactbar {
         margin-bottom: 0px;
         height: calc(100vh - 50px);
     }

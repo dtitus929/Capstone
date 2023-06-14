@@ -24,6 +24,11 @@ class Contact(db.Model):
         return {
             'id': self.id,
             'name': self.name,
+            'address': self.address,
+            'city': self.city,
+            'state': self.state,
+            'zip': self.zip,
+            'phone': self.phone,
             'url': self.url,
             'user_id': self.user_id
         }

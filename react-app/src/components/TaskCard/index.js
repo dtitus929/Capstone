@@ -18,6 +18,7 @@ function TaskCard(props) {
     const handleCardClick = (taskId) => {
         setSelectedTask(taskId)
         window.showHideTaskbar('show')
+        window.showHideContactbar('hide')
     }
 
     return (

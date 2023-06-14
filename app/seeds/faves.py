@@ -7,8 +7,8 @@ def seed_faves():
 
     faves = [
         Fave(name='Art', url='https://www.art.com/', user_id=1),
-        Fave(name='Google', url='https://www.google.com/', user_id=1),
-        Fave(name='DB Schema', url='https://dbdiagram.io/d/643dba9f6b31947051bfe073',  user_id=1),
+        Fave(name='Kayak', url='https://www.kayak.com/', user_id=1),
+        Fave(name='The Caps', url='https://www.nhl.com/capitals',  user_id=1),
         Fave(name='Art u2', url='https://www.art.com/', user_id=2),
         Fave(name='Google u2', url='https://www.google.com/', user_id=2),
         Fave(name='DB Schema u2', url='https://dbdiagram.io/d/643dba9f6b31947051bfe073',  user_id=2),

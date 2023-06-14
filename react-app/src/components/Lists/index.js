@@ -106,6 +106,15 @@ function Lists(props) {
   const allFaves = useSelector((state) => state.faves.allFaves);
   const arrFaves = Object.values(allFaves);
 
+  const handleContactClick = () => {
+    if (!window.showingContacts) {
+      window.showHideContactbar('show')
+    } else {
+      window.showHideContactbar('hide')
+    }
+
+  }
+
   return (
     <>
 
@@ -233,6 +242,12 @@ function Lists(props) {
         </div >
       ))
       }
+
+      {/* %%%%%%%% CONTACTS LINK %%%%%%%%%% */}
+
+      <div style={{ fontSize: '14px', margin: '16px 0px 0px 5px', display: 'flex', justifyContent: 'space-between', borderTop: '1px solid #bcd0eb', paddingTop: '10px' }}>
+        <div onClick={handleContactClick} className="list-link" style={{ margin: '0px 5px 0px 0px', padding: '2px 7px', cursor: 'pointer', display: 'flex', justifyContent: 'space-between' }}><span><span style={{ paddingRight: '4px' }}><i className="far fa-address-card" /></span>Contacts</span><span><i style={{ fontSize: '10px' }} className="fas fa-chevron-right" /></span></div>
+      </div>
 
     </>
   );

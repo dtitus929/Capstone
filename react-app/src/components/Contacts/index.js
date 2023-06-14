@@ -33,14 +33,19 @@ function Contacts() {
     let [constPhone, setConstPhone] = useState('');
     let [constUrl, setConstUrl] = useState('');
     let [errors, setErrors] = useState([]);
-    // let [currentlyAdding, setCurrentlyAdding] = useState(false);
 
-    const stateArr = ['AK', 'AL', 'AR', 'AS', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA', 'GU', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI', 'MN', 'MO', 'MP', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UM', 'UT', 'VA', 'VI', 'VT', 'WA', 'WI', 'WV', 'WY']
+    const stateArr = [' ', 'AK', 'AL', 'AR', 'AS', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA', 'GU', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI', 'MN', 'MO', 'MP', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UM', 'UT', 'VA', 'VI', 'VT', 'WA', 'WI', 'WV', 'WY']
 
-    // useEffect(() => {
-    //     console.log('id:', constId);
-    //     console.log('name:', constName);
-    // }, [constId, constName])
+    useEffect(() => {
+        console.log('id:', constId);
+        console.log('name:', constName);
+        console.log('address:', constAddress);
+        console.log('city:', constCity);
+        console.log('state:', constState);
+        console.log('zip:', constZip);
+        console.log('phone:', constPhone);
+        console.log('url:', constUrl);
+    }, [constId, constName, constAddress, constCity, constState, constZip, constPhone, constUrl])
 
 
 
@@ -84,40 +89,45 @@ function Contacts() {
 
     const editContact = async (e) => {
         e.preventDefault();
-        // const data = await dispatch(taskActions.editTaskThunk(id, name, list_id, description, due_date, completed, priority));
-        // if (data) {
-        //     setErrors(data);
-        //     return
-        // }
-        // dispatch(taskActions.getListTasksThunk(listId));
+        const data = await dispatch(contactActions.editContactThunk(constId, constName, constAddress, constCity, constState, constZip, constPhone, constUrl));
+        if (data) {
+            setErrors(data);
+            return
+        } else {
+            document.getElementById('edit-contact-' + constId).style.display = 'none'
+            document.getElementById('show-contact-' + constId).style.display = 'block'
+        }
     };
 
 
     const addContact = async (e) => {
         e.preventDefault();
-        // setErrors([]);
-
-        // const data = await dispatch(taskActions.addTaskThunk(listId, name, description, due_date, priority));
-
-        // if (data) {
-        //     setErrors(data);
-        //     return
-        // }
-        // setName('');
-        // setDescription('');
-        // setDueDate('');
-        // setPriority(3);
+        const data = await dispatch(contactActions.addContactThunk(constName, constAddress, constCity, constState, constZip, constPhone, constUrl));
+        if (!data.id) {
+            setErrors(data);
+            return
+        } else {
+            handleNewContactDisplay('hide');
+        }
     };
 
 
     const deleteContact = async (e) => {
         e.preventDefault();
-        // const data = await dispatch(taskActions.deleteTaskThunk(id));
-        // if (data) {
-        //     setErrors(data);
-        //     return
-        // }
-        // window.showHideTaskbar('hide')
+        const data = await dispatch(contactActions.deleteContactThunk(constId));
+        if (data) {
+            setErrors(data);
+            return
+        }
+        setConstId('')
+        setConstName('')
+        setConstAddress('')
+        setConstCity('')
+        setConstState('')
+        setConstZip('')
+        setConstPhone('')
+        setConstUrl('')
+        setErrors([])
     };
 
     // ===================
@@ -128,23 +138,21 @@ function Contacts() {
                 document.getElementById('show-contact-' + constId).style.display = 'block'
                 document.getElementById('edit-contact-' + constId).style.display = 'none'
             }
-            // setCurrentlyAdding(true)
-            setConstId('')
-            setConstName('')
-            setConstAddress('')
-            setConstCity('')
-            setConstState('')
-            setConstZip('')
-            setConstPhone('')
-            setConstUrl('')
-            setErrors([])
             document.getElementById('new-contact-form').style.display = 'block'
             document.getElementById('new-contact-button').style.display = 'none'
         } else {
-            // setCurrentlyAdding(false)
             document.getElementById('new-contact-form').style.display = 'none'
             document.getElementById('new-contact-button').style.display = 'block'
         }
+        setConstId('')
+        setConstName('')
+        setConstAddress('')
+        setConstCity('')
+        setConstState('')
+        setConstZip('')
+        setConstPhone('')
+        setConstUrl('')
+        setErrors([])
     }
 
     function handleEditContactDisplay(action, id, name, address, city, state, zip, phone, url) {
@@ -163,6 +171,7 @@ function Contacts() {
             setConstZip(zip)
             setConstPhone(phone)
             setConstUrl(url)
+            setErrors([])
             document.getElementById('edit-contact-' + id).style.display = 'block'
             document.getElementById('show-contact-' + id).style.display = 'none'
         } else {
@@ -203,11 +212,11 @@ function Contacts() {
             <div id="new-contact-button" style={{ fontSize: '14px', marginBottom: '10px' }}><button onClick={() => { handleNewContactDisplay('show') }} className="addcontact-button"><i style={{ fontSize: '12px', paddingRight: '4px' }} className="far fa-address-book" />New Contact</button></div>
 
             <div id="new-contact-form" style={{ display: 'none', borderTop: '1px solid grey', borderBottom: '1px solid grey', margin: '20px 0px', paddingBottom: '15px', fontSize: '14px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignContent: 'center', padding: '20px 0px 14px 0px' }}><div style={{ color: 'rgb(0, 96, 191)', fontWeight: '600', fontSize: '16px' }}>Add New Contact</div><button className="close-popup" style={{ transform: 'none', fontSize: '11px', alignSelf: 'end', marginBottom: '5px' }} onClick={() => { handleNewContactDisplay('hide') }}>CANCEL <i className="far fa-times-circle" style={{ fontSize: '11px' }} /></button></div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignContent: 'center', padding: '20px 0px 14px 0px' }}><div style={{ color: 'rgb(0, 96, 191)', fontWeight: '600', fontSize: '15px' }}>Add New Contact</div><button className="close-popup" style={{ transform: 'none', fontSize: '11px', alignSelf: 'end', marginBottom: '5px' }} onClick={() => { handleNewContactDisplay('hide') }}>CANCEL <i className="far fa-times-circle" style={{ fontSize: '11px' }} /></button></div>
 
                 {errors.length > 0 &&
-                    <div style={{ paddingTop: '20px', paddingLeft: '20px', color: 'red', display: 'block' }}>
-                        {errors.map((error, idx) => <li key={idx}>{error.substr(7)}</li>)}
+                    <div style={{ margin: '0px 0px 12px 10px', color: 'red', display: 'block' }}>
+                        {errors.map((error, idx) => <li key={idx}>{error.slice(error.indexOf(': ') + 1)}</li>)}
                     </div >
                 }
 
@@ -218,7 +227,7 @@ function Contacts() {
                         <div className="contactform-holder" style={{ marginBottom: '6px' }}>
                             <b>City:</b> <input style={{ margin: '0px 0px 0px 0px' }} className="editcontact-input-field" type="text" value={constCity} onChange={(e) => setConstCity(e.target.value)} />
                             &nbsp;<b>State:</b>
-                            <select className="contactform-holder" value={constState} onChange={(e) => setConstState(e.target.value)}>
+                            <select className="editcontact-input-field" style={{ height: '25px' }} value={constState} onChange={(e) => setConstState(e.target.value)}>
                                 {stateArr?.map((value) => (
                                     <option key={value} value={value}>{value}</option>
                                 ))
@@ -226,7 +235,7 @@ function Contacts() {
                             </select>
                             &nbsp;<b>Zip:</b><input style={{ margin: '0px 0px 0px 0px', width: '100%' }} className="editcontact-input-field" type="text" value={constZip} onChange={(e) => setConstZip(e.target.value)} />
                         </div>
-                        <div className="contactform-holder" style={{ marginBottom: '6px' }}><b>Telephone:</b><input style={{ margin: '0px 0px 0px 0px' }} className="editcontact-input-field" type="text" value={constPhone} onChange={(e) => setConstPhone(e.target.value)} /></div>
+                        <div className="contactform-holder" style={{ marginBottom: '6px' }}><b>Telephone:</b><input style={{ margin: '0px 0px 0px 0px' }} className="editcontact-input-field" placeholder="555-555-5555" type="text" value={constPhone} onChange={(e) => setConstPhone(e.target.value)} /></div>
                         <div className="contactform-holder"><b>URL:</b><input style={{ margin: '0px 0px 0px 0px' }} className="editcontact-input-field" type="text" value={constUrl} onChange={(e) => setConstUrl(e.target.value)} /></div>
                         <button style={{ margin: '10px 110px 10px 110px', fontSize: '12px', padding: '4px 18px 4px 18px' }} className="logout-button" type="submit"><i className="far fa-edit" style={{ fontSize: '12px' }} />&nbsp;&nbsp;Add Contact</button>
 
@@ -248,11 +257,11 @@ function Contacts() {
                         </div>
 
                         <div id={`edit-contact-${id}`} style={{ display: 'none' }} className="contacts">
-                            <div style={{ display: 'flex', justifyContent: 'flex-end' }}><button className="close-popup" style={{ transform: 'none', fontSize: '11px', alignSelf: 'end', marginBottom: '5px' }} onClick={() => { handleEditContactDisplay('hide', id) }}>CANCEL <i className="far fa-times-circle" style={{ fontSize: '11px' }} /></button></div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', margin: '4px 0px 10px 0px' }}><div style={{ color: 'rgb(0, 96, 191)', fontWeight: '600', fontSize: '15px' }}>Edit Contact</div><button className="close-popup" style={{ transform: 'none', fontSize: '11px', alignSelf: 'end', marginBottom: '5px' }} onClick={() => { handleEditContactDisplay('hide', id) }}>CANCEL <i className="far fa-times-circle" style={{ fontSize: '11px' }} /></button></div>
 
                             {errors.length > 0 &&
-                                <div style={{ paddingTop: '20px', paddingLeft: '20px', color: 'red', display: 'block' }}>
-                                    {errors.map((error, idx) => <li key={idx}>{error.substr(7)}</li>)}
+                                <div style={{ padding: '0px 0px 14px 20px', color: 'red', display: 'block' }}>
+                                    {errors.map((error, idx) => <li key={idx}>{error.slice(error.indexOf(': ') + 1)}</li>)}
                                 </div >
                             }
 
@@ -261,19 +270,19 @@ function Contacts() {
                                     <div className="contactform-holder" style={{ marginBottom: '6px' }}><b>Name:</b><input style={{ margin: '0px 0px 0px 0px' }} className="editcontact-input-field" type="text" value={constName} onChange={(e) => setConstName(e.target.value)} required /></div>
                                     <div className="contactform-holder"><b>Address:</b><input style={{ margin: '0px 0px 0px 0px' }} className="editcontact-input-field" type="text" value={constAddress} onChange={(e) => setConstAddress(e.target.value)} /></div>
                                     <div className="contactform-holder" style={{ marginBottom: '6px' }}>
-                                        <b>City:</b> <input style={{ margin: '0px 0px 0px 0px' }} className="editcontact-input-field" type="text" value={constCity} onChange={(e) => setConstCity(e.target.value)} />
+                                        <b>City:</b> <input style={{ margin: '0px 0px 0px 0px', width: '100%' }} className="editcontact-input-field" type="text" value={constCity} onChange={(e) => setConstCity(e.target.value)} />
                                         &nbsp;<b>State:</b>
-                                        <select className="contactform-holder" value={constState} onChange={(e) => setConstState(e.target.value)}>
+                                        <select className="editcontact-input-field" style={{ height: '25px' }} value={constState} onChange={(e) => setConstState(e.target.value)}>
                                             {stateArr?.map((value) => (
                                                 <option key={value} value={value}>{value}</option>
                                             ))
                                             }
                                         </select>
-                                        &nbsp;<b>Zip:</b><input style={{ margin: '0px 0px 0px 0px', width: '100%' }} className="editcontact-input-field" type="text" value={constZip} onChange={(e) => setConstZip(e.target.value)} />
+                                        &nbsp;<b>Zip:</b><input style={{ margin: '0px 0px 0px 0px', width: '40%' }} className="editcontact-input-field" type="text" value={constZip} onChange={(e) => setConstZip(e.target.value)} />
                                     </div>
                                     <div className="contactform-holder" style={{ marginBottom: '6px' }}><b>Telephone:</b><input style={{ margin: '0px 0px 0px 0px' }} className="editcontact-input-field" type="text" value={constPhone} onChange={(e) => setConstPhone(e.target.value)} /></div>
                                     <div className="contactform-holder"><b>URL:</b><input style={{ margin: '0px 0px 0px 0px' }} className="editcontact-input-field" type="text" value={constUrl} onChange={(e) => setConstUrl(e.target.value)} /></div>
-                                    <button style={{ margin: '10px 110px 10px 110px', fontSize: '12px', padding: '4px 18px 4px 18px' }} className="logout-button" type="submit"><i className="far fa-edit" style={{ fontSize: '12px' }} />&nbsp;&nbsp;Change Contact</button>
+                                    <button style={{ margin: '10px 105px 10px 105px', fontSize: '12px', padding: '4px 18px 4px 18px' }} className="logout-button" type="submit"><i className="far fa-edit" style={{ fontSize: '12px' }} />&nbsp;&nbsp;Change Contact</button>
 
                                     <div style={{ textAlign: 'center' }}>
                                         <div id={`initiate-contact-delete-${id}`} style={{ margin: '0px 125px 0px 125px', textAlign: 'center', cursor: 'pointer', fontSize: '11px', padding: '2px 2px 2px 2px' }} className="deletetask-button-init" type="submit" onClick={() => { handleConfirmation('show', id) }}><i className="far fa-times-circle" style={{ fontSize: '11px' }} />&nbsp;&nbsp;Delete Contact</div>

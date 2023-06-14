@@ -6,12 +6,12 @@ from sqlalchemy.sql import text
 def seed_contacts():
 
     contacts = [
-        Contact(name='Medstar Health', address='3245 West Patrick St., Suite 301', city='Baltimore',
-                state='MD', zip='21201', phone='555-123-1234', url='https://www.medstarhealth.org/', user_id=1),
+        Contact(name='Magnolia Bakery', address='1240 Avenue of the Americas', city='New York',
+                state='NY', zip='10020', phone='212-767-1123', url='https://www.magnoliabakery.com/', user_id=1),
         Contact(name='Domino Pizza', address='1235 Light St', city='Baltimore', state='MD',
                 zip='21230', phone='410-752-3030', url='https://www.dominos.com/en/', user_id=1),
-        Contact(name='Cab Service', address='2100 Huntingdon Ave', city='Baltimore', state='MD',
-                zip='21221', phone='410-685-1212', url='https://koachapp.com/', user_id=1)
+        Contact(name='Charlotte Primary Care', address='8332 Pineville Matthews Rd, Suite 205', city='Charlotte', state='NC',
+                zip='28226', phone='704-398-3952', url='https://www.onemedical.com/locations/cha/pineville/', user_id=1)
     ]
 
     for i in contacts:

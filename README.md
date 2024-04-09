@@ -3,6 +3,7 @@
 This is a full stack project developed while a student at App Academy.  It is a clone of the popular to-do list app called Remember the Milk.  The back-end utilizes a Flask server framework with a SQLAlchemy ORM. The front-end is React and makes use of Redux as a data store. No styling frameworks were used... just standard CSS.
 
 Available for view at: [Remember the Eggs](https://davet-capstone.onrender.com/)
+* This site may take a minute to spin up.  Give it a minute. 😀 
 
 ![remeggs-screenshots-github](https://user-images.githubusercontent.com/111056707/234941747-ab8da574-5844-448d-baff-f73d86df57ab.png)
 
